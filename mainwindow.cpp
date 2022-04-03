@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop* m_current_shop)
+MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop* m_current_shop, bool m_isModificate, QString m_current_file)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow), shops(m_shops), current_shop_artikul(m_artikul), current_shop(m_current_shop)
+    , ui(new Ui::MainWindow), shops(m_shops), current_shop_artikul(m_artikul), current_shop(m_current_shop), isModicate(m_isModificate), current_file(m_current_file)
 {
     ui->setupUi(this);
 
@@ -105,6 +105,15 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->table_shops->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->number_shops->setText(QString::number(shops->get_count_all_shops()));
+
+    ui->menuFile->addAction("Create new", this, SLOT(new_file()));
+    ui->menuFile->addAction("Open file", this, SLOT(open_file()));
+    ui->menuFile->addAction("Save", this, SLOT(save_file()));
+    ui->menuFile->addAction("Save as", this, SLOT(save_as()));
+    ui->menuFile->addAction("Exit", this, SLOT(exit_prog()));
+
+    ui->menuHelp->addAction("How use this program...", this, SLOT(help()));
+    ui->menuHelp->addAction("About program", this, SLOT(about_program()));
 }
 
 MainWindow::~MainWindow()
@@ -320,6 +329,8 @@ void MainWindow::on_add_notebook_clicked()
         ui->number_notebook->clear();
         ui->cost_notebook->clear();
         ui->memory->clear();
+
+        isModicate = true;
     }
 }
 
@@ -389,6 +400,8 @@ void MainWindow::on_add_smartphone_clicked()
         ui->screen_size_sm->clear();
         ui->hours_working->clear();
         ui->year_production->clear();
+
+        isModicate = true;
     }
 }
 
@@ -450,6 +463,8 @@ void MainWindow::on_add_tv_clicked()
         ui->screen_size->clear();
         ui->internet_connect->clearFocus();
         ui->number_chanels->clear();
+
+        isModicate = true;
     }
 }
 
@@ -619,6 +634,8 @@ void MainWindow::on_change_notebook_clicked()
         ui->table_notebooks->clearSelection();
         ui->table_smartphones->clearSelection();
         ui->table_tvs->clearSelection();
+
+        isModicate = true;
     }
 }
 
@@ -695,6 +712,8 @@ void MainWindow::on_change_smartphone_clicked()
         ui->table_notebooks->clearSelection();
         ui->table_smartphones->clearSelection();
         ui->table_tvs->clearSelection();
+
+        isModicate = true;
     }
 }
 
@@ -763,6 +782,8 @@ void MainWindow::on_change_tv_clicked()
         ui->table_notebooks->clearSelection();
         ui->table_smartphones->clearSelection();
         ui->table_tvs->clearSelection();
+
+        isModicate = true;
     }
 }
 
@@ -872,6 +893,8 @@ void MainWindow::on_add_new_shop_clicked()
         ui->name_shop->clear();
         ui->phone_shop->clear();
         ui->adress_shop->clear();
+
+        isModicate = true;
     }
 }
 
@@ -912,6 +935,196 @@ void MainWindow::on_delete_shop_clicked()
             update_table();
             update_table_shops();
             ui->menu->setCurrentIndex(0);
+
+            isModicate = true;
         }
+    }
+}
+
+void MainWindow::new_file() {
+    if (isModicate == true) {
+        QMessageBox msgBox;
+        msgBox.setText("Save changes?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::Yes);
+        int res = msgBox.exec();
+        if(res == QMessageBox::Yes) {
+            save_file();
+        }
+    }
+    shops->clear_list();
+    current_shop->ware->clear_list();
+    shops->add_node(current_shop);
+    update_table();
+    update_table_shops();
+    isModicate = false;
+}
+
+void MainWindow::save_file() {
+    QFile file;
+
+    if(current_file == "")
+    {
+        save_as();
+    }
+    else
+    {
+        file.setFileName(current_file);
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        write_in_file(file);
+        isModicate = false;
+        file.close();
+    }
+}
+
+void MainWindow::write_in_file(QFile &file) {
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+
+    stream << shops->get_count_all_shops() << endl;
+    shop* write_current_shop = shops->get_head();
+    while (write_current_shop != nullptr) {
+        list_product* write_current_products = write_current_shop->get_ware();
+        stream << write_current_products->get_count() << endl;
+        product* write_current_product = write_current_products->get_head();
+        while (write_current_product != nullptr) {
+            stream << write_current_product->get_category() << endl;
+            stream << write_current_product->get_iid() << endl;
+            stream << write_current_product->get_number() << endl;
+            stream << write_current_product->get_cost() << endl;
+            stream << write_current_product->get_firma() << endl;
+            stream << write_current_product->get_first() << endl;
+            stream << write_current_product->get_second() << endl;
+            stream << write_current_product->get_third() << endl;
+            write_current_product = write_current_product->next;
+        }
+        write_current_shop = write_current_shop->get_next();
+    }
+}
+
+void MainWindow::save_as() {
+    QFile file;
+
+    QString fileName = QFileDialog::getSaveFileName(this, "Save as ...", QDir::homePath(), "Text file (*.txt)");
+    if (!fileName.isEmpty())
+    {
+        current_file = fileName;
+        file.setFileName(fileName);
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        write_in_file(file);
+        isModicate = false;
+        file.close();
+    }
+}
+
+void MainWindow::exit_prog() {
+    if (isModicate == true) {
+        QMessageBox msgBox;
+        msgBox.setText("Save changes?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::Yes);
+        int res = msgBox.exec();
+
+        if(res == QMessageBox::Yes)
+        {
+            save_file();
+        }
+    }
+
+    close();
+}
+
+void MainWindow::about_program() {
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("About");
+    msgBox.setText("The program by Svetlana Rudneva\nAll roots reserved");
+    msgBox.exec();
+}
+
+void MainWindow::help() {
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("How use this app");
+    msgBox.setText("This program is very easy in using!\nYou will get success!\nWe belive that you will enjoy!");
+    msgBox.exec();
+}
+
+void MainWindow::open_file() {
+    if (isModicate == true) {
+        QMessageBox msgBox;
+        msgBox.setText("Save changes?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::Yes);
+        int res = msgBox.exec();
+
+        if(res == QMessageBox::Yes)
+        {
+            save_file();
+        }
+    }
+    shops->clear_list();
+    current_shop->ware->clear_list();
+    update_table();
+    update_table_shops();
+    isModicate = false;
+
+    QString fileName = QFileDialog::getOpenFileName(this, "Open file", QDir::homePath(), "Text file (*.txt)");
+
+    qDebug() << "";
+
+    if(!fileName.isEmpty())
+    {
+        current_file = fileName;
+
+        QFile file(fileName);
+        file.open(QIODevice::ReadOnly);
+
+        QTextStream stream(&file);
+        stream.setCodec("UTF-8");
+
+        int count_shops = (stream.readLine()).toInt();
+
+        for(int i = 0; i < count_shops; i++) {
+            int count_products = (stream.readLine()).toInt();
+            shop* current = new shop();
+            for (int j = 0; j < count_products; j++) {
+                QString category = stream.readLine();
+                QString iid = stream.readLine();
+                QString number = stream.readLine();
+                QString cost = stream.readLine();
+                QString firma = stream.readLine();
+                if (category == "Notebook") {
+                    QString memory_size = stream.readLine();
+                    QString rasrad = stream.readLine();
+                    QString architecture = stream.readLine();
+                    product* new_product = new notebook(iid, number, cost, firma, memory_size, rasrad, architecture);
+                    current->ware->add_node(new_product);
+                    current->ware->add_notebook();
+                }
+                if (category == "Smartphone") {
+                    QString screen_size = stream.readLine();
+                    QString hours_working = stream.readLine();
+                    QString year_production = stream.readLine();
+                    product* new_product = new smartphone(iid, number, cost, firma, screen_size, hours_working, year_production);
+                    current->ware->add_node(new_product);
+                    current->ware->add_smartphone();
+                }
+                if (category == "TV") {
+                    QString screen_size = stream.readLine();
+                    QString internet_connect = stream.readLine();
+                    QString number_channels = stream.readLine();
+                    product* new_product = new tv(iid, number, cost, firma, screen_size, internet_connect, number_channels);
+                    current->ware->add_node(new_product);
+                    current->ware->add_tv();
+                }
+            }
+            shops->add_node(current);
+            current_shop = current;
+        }
+
+        file.close();
+
+        update_table();
+        update_table_shops();
+        isModicate = false;
     }
 }

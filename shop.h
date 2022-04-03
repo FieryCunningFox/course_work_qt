@@ -72,6 +72,8 @@ public:
     void add_node(shop* new_shop); // добавление нового магазина в сеть
 
     void delete_node(int id_shop);
+
+    void clear_list();
 };
 
 #endif // SHOP_H

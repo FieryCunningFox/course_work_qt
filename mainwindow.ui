@@ -20,7 +20,7 @@
       <x>20</x>
       <y>20</y>
       <width>761</width>
-      <height>391</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -66,7 +66,7 @@
         <x>0</x>
         <y>0</y>
         <width>761</width>
-        <height>361</height>
+        <height>321</height>
        </rect>
       </property>
      </widget>
@@ -75,22 +75,22 @@
    <widget class="QStackedWidget" name="menu">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>420</y>
-      <width>751</width>
-      <height>101</height>
+      <x>10</x>
+      <y>410</y>
+      <width>771</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="main_menu">
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>-10</x>
         <y>10</y>
-        <width>751</width>
+        <width>761</width>
         <height>81</height>
        </rect>
       </property>
@@ -146,7 +146,7 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>741</width>
+        <width>761</width>
         <height>91</height>
        </rect>
       </property>
@@ -172,10 +172,10 @@
      <widget class="QWidget" name="gridLayoutWidget_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>0</y>
-        <width>731</width>
-        <height>106</height>
+        <x>10</x>
+        <y>-25</y>
+        <width>761</width>
+        <height>131</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -329,9 +329,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>0</y>
-        <width>741</width>
-        <height>91</height>
+        <y>-10</y>
+        <width>761</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -440,9 +440,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>741</width>
-        <height>91</height>
+        <y>0</y>
+        <width>751</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
@@ -558,9 +558,9 @@
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>10</y>
-        <width>741</width>
+        <width>761</width>
         <height>81</height>
        </rect>
       </property>
@@ -602,7 +602,7 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>731</width>
+        <width>761</width>
         <height>106</height>
        </rect>
       </property>
@@ -756,9 +756,9 @@
      <widget class="QWidget" name="gridLayoutWidget_9">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>10</y>
-        <width>741</width>
+        <width>761</width>
         <height>91</height>
        </rect>
       </property>
@@ -875,10 +875,10 @@
      <widget class="QWidget" name="gridLayoutWidget_8">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
-        <width>741</width>
-        <height>91</height>
+        <width>761</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_8">
@@ -983,22 +983,12 @@
      </widget>
     </widget>
     <widget class="QWidget" name="choose_new_shop">
-     <widget class="QTableWidget" name="table_shops">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>741</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>-1</x>
+        <x>9</x>
         <y>60</y>
-        <width>741</width>
+        <width>761</width>
         <height>32</height>
        </rect>
       </property>
@@ -1026,15 +1016,25 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTableWidget" name="table_shops">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>-30</y>
+        <width>761</width>
+        <height>91</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="new_shop">
      <widget class="QWidget" name="gridLayoutWidget_10">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>721</width>
-        <height>99</height>
+        <y>-2</y>
+        <width>761</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
@@ -1095,7 +1095,7 @@
      <rect>
       <x>20</x>
       <y>520</y>
-      <width>751</width>
+      <width>761</width>
       <height>51</height>
      </rect>
     </property>
@@ -1194,6 +1194,18 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

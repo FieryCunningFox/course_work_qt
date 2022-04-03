@@ -7,6 +7,7 @@ class product
 {
 protected:
     product* next; // адрес следующего узла
+
 private:
     QString category;
     QString iid;
@@ -177,6 +178,7 @@ public:
     }
 
     void clear_list();
+
     int get_count();
     int get_count_notebooks();
     int get_count_smartphones();

@@ -80,7 +80,14 @@ list_product::list_product(product* m_head, int m_count, int m_count_notebooks, 
     head = nullptr;
 }
 
-void list_product::clear_list() { head = nullptr; }
+void list_product::clear_list() {
+    head = nullptr;
+    count_notebooks = 0;
+    count_smartphones = 0;
+    count_tvs = 0;
+    count = 0;
+}
+
 int list_product::get_count() { return count; }
 int list_product::get_count_notebooks() { return count_notebooks; }
 int list_product::get_count_smartphones() { return count_smartphones; }

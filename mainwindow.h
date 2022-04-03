@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QFileDialog>
+#include <QDebug>
+#include <QDate>
 
 #include "product.h"
 #include "shop.h"
@@ -17,7 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr, int m_current_shop_artikul = 1, shop_list* m_shops = nullptr, shop* m_current_shop = nullptr);
+    MainWindow(QWidget *parent = nullptr, int m_current_shop_artikul = 1, shop_list* m_shops = nullptr, shop* m_current_shop = nullptr, bool m_isModificate = false, QString m_current_file = "");
     ~MainWindow();
 
 private slots:
@@ -74,6 +79,16 @@ private slots:
 
     void on_delete_shop_clicked();
 
+    // функции меню
+    void new_file();
+    void open_file();
+    void save_file();
+    void save_as();
+    void exit_prog();
+    void help();
+    void about_program();
+
+
 private:
     Ui::MainWindow *ui;
 
@@ -81,7 +96,12 @@ private:
     int current_shop_artikul;
     shop* current_shop;
 
+    bool isModicate;
+    QString current_file;
+
     void update_table();
     void update_table_shops();
+
+    void write_in_file(QFile &file);
 };
 #endif // MAINWINDOW_H

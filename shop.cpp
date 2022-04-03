@@ -93,3 +93,8 @@ shop* shop_list::find_node(int id_shop) {
     }
     return current;
 }
+
+void shop_list::clear_list() {
+    head = nullptr;
+    count_all_shops = 0;
+}
