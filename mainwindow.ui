@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>625</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="products">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>761</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="notebooks">
+     <attribute name="title">
+      <string>notebooks</string>
+     </attribute>
+     <widget class="QTableWidget" name="table_notebooks">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>361</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="smartphones">
+     <attribute name="title">
+      <string>smartphones</string>
+     </attribute>
+     <widget class="QTableWidget" name="table_smartphones">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>361</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tvs">
+     <attribute name="title">
+      <string>tvs</string>
+     </attribute>
+     <widget class="QTableWidget" name="table_tvs">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>361</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QStackedWidget" name="menu">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>420</y>
+      <width>751</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>9</number>
+    </property>
+    <widget class="QWidget" name="main_menu">
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>751</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="delete_product">
+         <property name="text">
+          <string>Delete product</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="change_shop">
+         <property name="text">
+          <string>Change shop</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="add_new">
+         <property name="text">
+          <string>Add product</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="edit_product">
+         <property name="text">
+          <string>Edit product</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Search product</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="add_shop">
+         <property name="text">
+          <string>Add shop</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="search">
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="search_by_firm">
+         <property name="text">
+          <string>Search by firm</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="search_by_cost">
+         <property name="text">
+          <string>Search by cost</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Notebook">
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>731</width>
+        <height>106</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_notebook"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>Architecture: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Memory size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="memory"/>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QComboBox" name="architecture">
+         <item>
+          <property name="text">
+           <string>ARM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>x86</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_notebook"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_notebook"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Rasrad: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_notebook">
+         <item>
+          <property name="text">
+           <string>Intel</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Del</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Hp</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Samsung</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QComboBox" name="rasrad">
+         <item>
+          <property name="text">
+           <string>16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="add_notebook">
+         <property name="text">
+          <string>ADD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_notebook">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="TV">
+     <widget class="QWidget" name="gridLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_tv"/>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_tv"/>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_tv"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_tv">
+         <item>
+          <property name="text">
+           <string>Samsung</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Huawei</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Screens size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="screen_size"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="internet_connect">
+         <property name="text">
+          <string>Internet connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>Number chanels: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="number_chanels"/>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="add_tv">
+         <property name="text">
+          <string>ADD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_tv">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Smartphone">
+     <widget class="QWidget" name="gridLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_smartphone"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_21">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_smartphone"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_smartphone">
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Intel</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Hp</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LG</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_smartphone"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="text">
+          <string>Screen size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="screen_size_sm"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>Hours working: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="hours_working"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_27">
+         <property name="text">
+          <string>Year production: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="year_production"/>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="add_smartphone">
+         <property name="text">
+          <string>ADD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_smartphone">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="add_product">
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>741</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="tv">
+         <property name="text">
+          <string>New TV</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="smartphone">
+         <property name="text">
+          <string>New smartphone</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="notebook">
+         <property name="text">
+          <string>New notebook</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="cancel">
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="edit_notebook">
+     <widget class="QWidget" name="gridLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>731</width>
+        <height>106</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_notebook_2"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_28">
+         <property name="text">
+          <string>Architecture: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_29">
+         <property name="text">
+          <string>Memory size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="memory_2"/>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_30">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_31">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QComboBox" name="architecture_2">
+         <item>
+          <property name="text">
+           <string>ARM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>x86</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_notebook_2"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_notebook_2"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_32">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_33">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_34">
+         <property name="text">
+          <string>Rasrad: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_notebook_2">
+         <item>
+          <property name="text">
+           <string>Intel</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Del</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Hp</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LG</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Samsung</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QComboBox" name="rasrad_2">
+         <item>
+          <property name="text">
+           <string>16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="change_notebook">
+         <property name="text">
+          <string>DONE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_notebook_2">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="edit_smartphone">
+     <widget class="QWidget" name="gridLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_smartphone_2"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_41">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_smartphone_2"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_42">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_43">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_44">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_smartphone_2">
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Intel</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Hp</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LG</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_smartphone_2"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>Screen size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="screen_size_sm_2"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_46">
+         <property name="text">
+          <string>Hours working: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="hours_working_2"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_47">
+         <property name="text">
+          <string>Year production: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="year_production_2"/>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="change_smartphone">
+         <property name="text">
+          <string>DONE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_smartphone_2">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="edit_tv">
+     <widget class="QWidget" name="gridLayoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_35">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_36">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_37">
+         <property name="text">
+          <string>Cost: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_tv_2"/>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_tv_2"/>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="number_tv_2"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_38">
+         <property name="text">
+          <string>Artikul: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="firma_tv_2">
+         <item>
+          <property name="text">
+           <string>Samsung</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Apple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Huawei</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_39">
+         <property name="text">
+          <string>Screens size: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="screen_size_2"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="internet_connect_2">
+         <property name="text">
+          <string>Internet connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_40">
+         <property name="text">
+          <string>Number chanels: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="number_chanels_2"/>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="change_tv">
+         <property name="text">
+          <string>DONE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_tv_2">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="choose_new_shop">
+     <widget class="QTableWidget" name="table_shops">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>741</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>60</y>
+        <width>741</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="delete_shop">
+         <property name="text">
+          <string>Delete shop</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="choose_new_shop_2">
+         <property name="text">
+          <string>CHOOSE</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="stay_shop">
+         <property name="text">
+          <string>CANCEL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="new_shop">
+     <widget class="QWidget" name="gridLayoutWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>721</width>
+        <height>99</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Phone: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Name shop: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="name_shop"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Adress: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="adress_shop"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="phone_shop"/>
+       </item>
+       <item row="1" column="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="add_new_shop">
+           <property name="text">
+            <string>ADD</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cancel_new_shop">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>520</y>
+      <width>751</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Number notebooks: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="count_notebooks">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Number smartphones: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="count_smartphones">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Number TVs: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="count_tvs">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>All products: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="all_products">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>0</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_48">
+       <property name="text">
+        <string>number shops: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="number_shops">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
