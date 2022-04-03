@@ -47,9 +47,7 @@ public:
     virtual QString get_second() = 0;
     virtual QString get_third() = 0;
 
-    virtual void set_data_product_notebook(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) = 0;
-    virtual void set_data_product_smartphone(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) = 0;
-    virtual void set_data_product_tv(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels) = 0;
+    virtual void set_data_product(QString, QString, QString, QString, QString, QString, QString) = 0;
 
     friend class list_product;  // для того, чтобы в классе List было доступно поле next
     friend class MainWindow;
@@ -76,15 +74,12 @@ public:
 
     static int get_number_notebooks() { return number_notebooks; }
 
-    void set_data_product_notebook(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) { // установка данных о товаре
+    void set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) { // установка данных о товаре
         product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
         memory_size = m_memory_size;
         rasrad = m_rasrad;
         arch = m_arch;
     }
-
-    void set_data_product_smartphone(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) {};
-    void set_data_product_tv(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels) {};
 
     QString get_first() { return memory_size; }
     QString get_second() { return rasrad; }
@@ -112,15 +107,12 @@ public:
 
     static int get_number_smartphones() { return number_smartphones; }
 
-    void set_data_product_smartphone(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) {
+    void set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) {
         product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
         screen_size = m_screen_size;
         hours_working = m_hours_working;
         year_production = m_year_production;
     }
-
-    void set_data_product_notebook(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) {};
-    void set_data_product_tv(QString m_iid, QString m_number, QString m_cost, QString m_firma,  QString m_screen_size, QString m_internet_connect, QString m_number_channels) {};
 
     QString get_first() { return screen_size; }
     QString get_second() { return hours_working; }
@@ -147,15 +139,12 @@ public:
 
     static int get_number_tvs() { return number_tvs; }
 
-    void set_data_product_tv(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels) { // установка данных
+    void set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels) { // установка данных
         product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
         screen_size = m_screen_size;
         internet_connect = m_internet_connect;
         number_channels = m_number_channels;
     }
-
-    void set_data_product_notebook(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) {};
-    void set_data_product_smartphone(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) {};
 
     QString get_first() { return screen_size; }
     QString get_second() { return internet_connect; }

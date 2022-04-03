@@ -607,7 +607,7 @@ void MainWindow::on_change_notebook_clicked()
         QString architecture = ui->architecture_2->currentText();
 
         product* edit_notebook = current_shop->ware->find_node(id_product);
-        edit_notebook->set_data_product_notebook(artikul, number, cost, firma, memory_size, rasrad, architecture);
+        edit_notebook->set_data_product(artikul, number, cost, firma, memory_size, rasrad, architecture);
 
         update_table();
         ui->menu->setCurrentIndex(0);
@@ -681,7 +681,7 @@ void MainWindow::on_change_smartphone_clicked()
         QString year = ui->year_production_2->text();
 
         product* new_smartphone = current_shop->ware->find_node(id_product);
-        new_smartphone->set_data_product_smartphone(artikul, number, cost, firma, screen_size, hours_working, year);
+        new_smartphone->set_data_product(artikul, number, cost, firma, screen_size, hours_working, year);
 
         update_table();
         ui->menu->setCurrentIndex(0);
@@ -749,7 +749,7 @@ void MainWindow::on_change_tv_clicked()
         QString channels = ui->number_chanels_2->text();
 
         product* new_tv = current_shop->ware->find_node(id_product);
-        new_tv->set_data_product_tv(artikul, number, cost, firma, screen_size, internet, channels);
+        new_tv->set_data_product(artikul, number, cost, firma, screen_size, internet, channels);
 
         update_table();
         ui->menu->setCurrentIndex(0);
