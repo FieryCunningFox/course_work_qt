@@ -1128,3 +1128,72 @@ void MainWindow::open_file() {
         isModicate = false;
     }
 }
+
+void MainWindow::on_cancel_new_shop_2_clicked()
+{
+    ui->menu->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_edit_shop_done_clicked()
+{
+    bool correct_data = true;
+    if (ui->name_shop_2->text().isEmpty()) {
+        ui->name_shop_2->setStyleSheet("background-color: red");
+        correct_data = false;
+    }
+    else {
+        ui->name_shop_2->setStyleSheet("background-color: white");
+    }
+    if (ui->phone_shop_2->text().isEmpty()) {
+        ui->phone_shop_2->setStyleSheet("background-color: red");
+        correct_data = false;
+    }
+    else {
+        ui->phone_shop_2->setStyleSheet("background-color: white");
+    }
+    if (ui->adress_shop_2->text().isEmpty()) {
+        ui->adress_shop_2->setStyleSheet("background-color: red");
+        correct_data = false;
+    }
+    else {
+        ui->adress_shop_2->setStyleSheet("background-color: white");
+    }
+    if (correct_data == true) {
+        QString name = ui->name_shop_2->text();
+        QString phone = ui->phone_shop_2->text();
+        QString adress = ui->adress_shop_2->text();
+
+        int row_shop = ui->table_shops->currentRow();
+        QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
+        int id_shop = curitem->text().toInt();
+
+        shop* edit_shop = shops->find_node(id_shop);
+        edit_shop->set_data_shop(name, adress, phone);
+        if (current_shop_artikul == edit_shop->get_artikul()) {
+            current_shop = edit_shop;
+        }
+
+        update_table_shops();
+        ui->menu->setCurrentIndex(0);
+
+        ui->name_shop_2->clear();
+        ui->phone_shop_2->clear();
+        ui->adress_shop_2->clear();
+
+        isModicate = true;
+    }
+}
+
+void MainWindow::on_edit_shop_data_clicked()
+{
+    ui->menu->setCurrentIndex(11);
+    int row_shop = ui->table_shops->currentRow();
+    QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
+    int id_shop = curitem->text().toInt();
+    shop* edit_shop = shops->find_node(id_shop);
+
+    ui->name_shop_2->setText(edit_shop->get_name_shop());
+    ui->phone_shop_2->setText(edit_shop->get_phone());
+    ui->adress_shop_2->setText(edit_shop->get_adress());
+}

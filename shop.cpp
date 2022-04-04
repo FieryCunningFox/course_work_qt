@@ -15,13 +15,10 @@ QString shop::get_phone() { return phone; }
 shop* shop::get_next() { return next; }
 list_product* shop::get_ware() { return ware; };
 
-void shop::set_data_shop(QString m_name_shop, QString m_adress, QString m_phone, int m_artikul, list_product* m_ware, shop* m_next) {
+void shop::set_data_shop(QString m_name_shop, QString m_adress, QString m_phone) {
     name_shop = m_name_shop;
     adress = m_adress;
     phone = m_phone;
-    artikul = m_artikul;
-    ware = m_ware;
-    next = m_next;
 }
 
 void shop::set_name(QString name) { name_shop = name; }

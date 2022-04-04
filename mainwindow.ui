@@ -82,7 +82,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="main_menu">
      <widget class="QWidget" name="gridLayoutWidget">
@@ -1001,9 +1001,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="edit_shop_data">
+         <property name="text">
+          <string>Edit shop</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="choose_new_shop_2">
          <property name="text">
-          <string>CHOOSE</string>
+          <string>Change shop</string>
          </property>
         </widget>
        </item>
@@ -1079,6 +1086,68 @@
          </item>
          <item>
           <widget class="QPushButton" name="cancel_new_shop">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="edit_shop">
+     <widget class="QWidget" name="gridLayoutWidget_11">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_49">
+         <property name="text">
+          <string>Phone: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_50">
+         <property name="text">
+          <string>Name shop: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="name_shop_2"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_51">
+         <property name="text">
+          <string>Adress: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="adress_shop_2"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="phone_shop_2"/>
+       </item>
+       <item row="1" column="3">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QPushButton" name="edit_shop_done">
+           <property name="text">
+            <string>DONE</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cancel_new_shop_2">
            <property name="text">
             <string>Cancel</string>
            </property>

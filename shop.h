@@ -29,7 +29,7 @@ public:
 
     static int get_number_shop() { return number_shop; }
 
-    void set_data_shop(QString m_name_shop, QString m_adress, QString m_phone, int m_artikul, list_product* m_ware = NULL, shop* m_next = nullptr) ;
+    void set_data_shop(QString m_name_shop, QString m_adress, QString m_phone) ;
 
     void set_name(QString name);
     void set_adress(QString m_adress);

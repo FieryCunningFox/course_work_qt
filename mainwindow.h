@@ -89,6 +89,12 @@ private slots:
     void about_program();
 
 
+    void on_cancel_new_shop_2_clicked();
+
+    void on_edit_shop_done_clicked();
+
+    void on_edit_shop_data_clicked();
+
 private:
     Ui::MainWindow *ui;
 
