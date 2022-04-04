@@ -14,84 +14,26 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="products">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>761</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>2</number>
-    </property>
-    <widget class="QWidget" name="notebooks">
-     <attribute name="title">
-      <string>notebooks</string>
-     </attribute>
-     <widget class="QTableWidget" name="table_notebooks">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>761</width>
-        <height>361</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="smartphones">
-     <attribute name="title">
-      <string>smartphones</string>
-     </attribute>
-     <widget class="QTableWidget" name="table_smartphones">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>761</width>
-        <height>361</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tvs">
-     <attribute name="title">
-      <string>tvs</string>
-     </attribute>
-     <widget class="QTableWidget" name="table_tvs">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>761</width>
-        <height>321</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QStackedWidget" name="menu">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>410</y>
-      <width>771</width>
+      <width>791</width>
       <height>111</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>13</number>
     </property>
     <widget class="QWidget" name="main_menu">
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>-10</x>
+        <x>10</x>
         <y>10</y>
-        <width>761</width>
-        <height>81</height>
+        <width>781</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -124,7 +66,7 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="search_product">
          <property name="text">
           <string>Search product</string>
          </property>
@@ -145,9 +87,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>0</y>
-        <width>761</width>
-        <height>91</height>
+        <y>10</y>
+        <width>781</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -173,9 +115,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>-25</y>
-        <width>761</width>
-        <height>131</height>
+        <y>5</y>
+        <width>781</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -194,6 +136,9 @@
          <property name="text">
           <string>Memory size: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -204,12 +149,18 @@
          <property name="text">
           <string>Firma: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
           <string>Artikul: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -244,6 +195,9 @@
         <widget class="QLabel" name="label_10">
          <property name="text">
           <string>Cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -329,9 +283,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>-10</y>
-        <width>761</width>
-        <height>101</height>
+        <y>0</y>
+        <width>781</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -339,6 +293,9 @@
         <widget class="QLabel" name="label_18">
          <property name="text">
           <string>Firma: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -353,6 +310,9 @@
         <widget class="QLabel" name="label_17">
          <property name="text">
           <string>Cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -369,6 +329,9 @@
         <widget class="QLabel" name="label_15">
          <property name="text">
           <string>Artikul: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -396,6 +359,9 @@
          <property name="text">
           <string>Screens size: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -412,6 +378,9 @@
         <widget class="QLabel" name="label_20">
          <property name="text">
           <string>Number chanels: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -441,42 +410,54 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>751</width>
-        <height>101</height>
+        <width>781</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
-       <item row="0" column="5">
-        <widget class="QLineEdit" name="cost_smartphone"/>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_21">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_25">
          <property name="text">
-          <string>Artikul: </string>
+          <string>Screen size: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_27">
+         <property name="text">
+          <string>Year production: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
         <widget class="QLineEdit" name="number_smartphone"/>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_22">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="artikul_smartphone"/>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="hours_working"/>
+       </item>
+       <item row="1" column="7">
+        <widget class="QPushButton" name="cancel_smartphone">
          <property name="text">
-          <string>Number: </string>
+          <string>CANCEL</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="label_24">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_21">
          <property name="text">
-          <string>Firma: </string>
+          <string>Artikul: </string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="label_23">
-         <property name="text">
-          <string>Cost: </string>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -504,39 +485,6 @@
          </item>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="artikul_smartphone"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_25">
-         <property name="text">
-          <string>Screen size: </string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="screen_size_sm"/>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_26">
-         <property name="text">
-          <string>Hours working: </string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLineEdit" name="hours_working"/>
-       </item>
-       <item row="1" column="4">
-        <widget class="QLabel" name="label_27">
-         <property name="text">
-          <string>Year production: </string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <widget class="QLineEdit" name="year_production"/>
-       </item>
        <item row="1" column="6">
         <widget class="QPushButton" name="add_smartphone">
          <property name="text">
@@ -544,10 +492,52 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="7">
-        <widget class="QPushButton" name="cancel_smartphone">
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="cost_smartphone"/>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_23">
          <property name="text">
-          <string>CANCEL</string>
+          <string>Cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_26">
+         <property name="text">
+          <string>Hours working: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="year_production"/>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_24">
+         <property name="text">
+          <string>Firma: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="screen_size_sm"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>Number: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -559,9 +549,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>761</width>
-        <height>81</height>
+        <y>0</y>
+        <width>781</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -602,7 +592,7 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>761</width>
+        <width>781</width>
         <height>106</height>
        </rect>
       </property>
@@ -622,6 +612,9 @@
          <property name="text">
           <string>Memory size: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -632,12 +625,18 @@
          <property name="text">
           <string>Firma: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_31">
          <property name="text">
           <string>Artikul: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -673,12 +672,18 @@
          <property name="text">
           <string>Cost: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="2">
         <widget class="QLabel" name="label_34">
          <property name="text">
           <string>Rasrad: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -757,9 +762,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>761</width>
-        <height>91</height>
+        <y>0</y>
+        <width>781</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_9">
@@ -771,6 +776,9 @@
          <property name="text">
           <string>Artikul: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="3">
@@ -781,6 +789,9 @@
          <property name="text">
           <string>Number: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="6">
@@ -788,12 +799,18 @@
          <property name="text">
           <string>Firma: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="4">
         <widget class="QLabel" name="label_44">
          <property name="text">
           <string>Cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -829,6 +846,9 @@
          <property name="text">
           <string>Screen size: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -839,6 +859,9 @@
          <property name="text">
           <string>Hours working: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="3">
@@ -848,6 +871,9 @@
         <widget class="QLabel" name="label_47">
          <property name="text">
           <string>Year production: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -877,8 +903,8 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>761</width>
-        <height>101</height>
+        <width>781</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_8">
@@ -887,6 +913,9 @@
          <property name="text">
           <string>Firma: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="2">
@@ -894,12 +923,18 @@
          <property name="text">
           <string>Number: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="4">
         <widget class="QLabel" name="label_37">
          <property name="text">
           <string>Cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -916,6 +951,9 @@
         <widget class="QLabel" name="label_38">
          <property name="text">
           <string>Artikul: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -943,6 +981,9 @@
          <property name="text">
           <string>Screens size: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -959,6 +1000,9 @@
         <widget class="QLabel" name="label_40">
          <property name="text">
           <string>Number chanels: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -987,9 +1031,9 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>60</y>
-        <width>761</width>
-        <height>32</height>
+        <y>80</y>
+        <width>781</width>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1027,9 +1071,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>-30</y>
-        <width>761</width>
-        <height>91</height>
+        <y>0</y>
+        <width>781</width>
+        <height>81</height>
        </rect>
       </property>
      </widget>
@@ -1039,9 +1083,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>-2</y>
-        <width>761</width>
-        <height>111</height>
+        <y>8</y>
+        <width>781</width>
+        <height>101</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
@@ -1050,12 +1094,18 @@
          <property name="text">
           <string>Phone: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Name shop: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -1100,9 +1150,9 @@
      <widget class="QWidget" name="gridLayoutWidget_11">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
-        <width>761</width>
+        <width>781</width>
         <height>111</height>
        </rect>
       </property>
@@ -1112,12 +1162,18 @@
          <property name="text">
           <string>Phone: </string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_50">
          <property name="text">
           <string>Name shop: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -1128,6 +1184,9 @@
         <widget class="QLabel" name="label_51">
          <property name="text">
           <string>Adress: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -1158,13 +1217,192 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="by_cost">
+     <widget class="QWidget" name="gridLayoutWidget_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>9</y>
+        <width>781</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_52">
+         <property name="text">
+          <string>Minimum cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="min_cost"/>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="max_cost"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_53">
+         <property name="text">
+          <string>Maximum cost: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_54">
+         <property name="text">
+          <string>Product that you need: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="type_product">
+         <item>
+          <property name="text">
+           <string>Notebook</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Smartphone</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TV</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Doesn't matter</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="search_cost_product">
+           <property name="text">
+            <string>SEARCH</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cancel_search">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="where_search">
+         <property name="text">
+          <string>search in all shops</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="by_firma">
+     <widget class="QWidget" name="gridLayoutWidget_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>781</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_13">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_58">
+         <property name="text">
+          <string>Type of product: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="type_product_2">
+         <item>
+          <property name="text">
+           <string>Notebook</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Smartphone</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TV</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Doesn't matter</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_57">
+         <property name="text">
+          <string>Name of firm:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="name_firm"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="where_search_2">
+         <property name="text">
+          <string>Search in all shops</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QPushButton" name="search_firm_product">
+           <property name="text">
+            <string>SEARCH</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="cancel_search_2">
+           <property name="text">
+            <string>CANCEL</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>520</y>
-      <width>761</width>
+      <width>741</width>
       <height>51</height>
      </rect>
     </property>
@@ -1173,6 +1411,9 @@
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Number notebooks: </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -1188,6 +1429,9 @@
        <property name="text">
         <string>Number smartphones: </string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item>
@@ -1201,6 +1445,9 @@
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Number TVs: </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -1216,6 +1463,9 @@
        <property name="text">
         <string>All products: </string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item>
@@ -1230,7 +1480,7 @@
    <widget class="QWidget" name="horizontalLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>550</x>
       <y>0</y>
       <width>201</width>
       <height>31</height>
@@ -1240,7 +1490,7 @@
      <item>
       <widget class="QLabel" name="label_48">
        <property name="text">
-        <string>number shops: </string>
+        <string>Number shops: </string>
        </property>
       </widget>
      </item>
@@ -1252,6 +1502,136 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QStackedWidget" name="tables">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>781</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="main_page">
+     <widget class="QTabWidget" name="products">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>781</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="notebooks_3">
+       <attribute name="title">
+        <string>notebooks</string>
+       </attribute>
+       <widget class="QTableWidget" name="table_notebooks_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>781</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="smartphones_3">
+       <attribute name="title">
+        <string>smartphones</string>
+       </attribute>
+       <widget class="QTableWidget" name="table_smartphones_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>781</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tvs_3">
+       <attribute name="title">
+        <string>tvs</string>
+       </attribute>
+       <widget class="QTableWidget" name="table_tvs_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>781</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="search_page">
+     <widget class="QTableWidget" name="search_table">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>781</width>
+        <height>321</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_56">
+         <property name="text">
+          <string>Number products: </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="number_res_search">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_55">
+      <property name="geometry">
+       <rect>
+        <x>19</x>
+        <y>10</y>
+        <width>741</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RESULTS FOR YOUR SEARCH</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

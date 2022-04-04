@@ -12,7 +12,6 @@
 #include "product.h"
 #include "shop.h"
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -94,6 +93,20 @@ private slots:
     void on_edit_shop_done_clicked();
 
     void on_edit_shop_data_clicked();
+
+    void on_search_product_clicked();
+
+    void on_cancel_search_clicked();
+
+    void on_search_by_cost_clicked();
+
+    void on_search_cost_product_clicked();
+
+    void on_cancel_search_2_clicked();
+
+    void on_search_firm_product_clicked();
+
+    void on_search_by_firm_clicked();
 
 private:
     Ui::MainWindow *ui;

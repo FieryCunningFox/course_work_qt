@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     current_shop = new shop();
     shops->add_node(current_shop);
 
-    ui->table_notebooks->setColumnCount(8);
-    ui->table_notebooks->setRowCount(0);
+    ui->table_notebooks_3->setColumnCount(8);
+    ui->table_notebooks_3->setRowCount(0);
     QStringList Title_notebook;
     Title_notebook << "ID"
                   << "Artikul"
@@ -24,14 +24,14 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
                   << "Memory size"
                   << "Rasrad"
                   << "Architecture";
-    ui->table_notebooks->setHorizontalHeaderLabels(Title_notebook);
-    ui->table_notebooks->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->table_notebooks->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
-    ui->table_notebooks->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
-    ui->table_notebooks->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->table_notebooks_3->setHorizontalHeaderLabels(Title_notebook);
+    ui->table_notebooks_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_notebooks_3->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
+    ui->table_notebooks_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
+//    ui->table_notebooks->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->table_smartphones->setColumnCount(8);
-    ui->table_smartphones->setRowCount(0);
+    ui->table_smartphones_3->setColumnCount(8);
+    ui->table_smartphones_3->setRowCount(0);
     QStringList Title_smartphone;
     Title_smartphone << "ID"
                      << "Artikul"
@@ -41,14 +41,14 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
                      << "Screen size"
                      << "Hours working"
                      << "Year production";
-    ui->table_smartphones->setHorizontalHeaderLabels(Title_smartphone);
-    ui->table_smartphones->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->table_smartphones->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
-    ui->table_smartphones->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
-    ui->table_smartphones->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->table_smartphones_3->setHorizontalHeaderLabels(Title_smartphone);
+    ui->table_smartphones_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_smartphones_3->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
+    ui->table_smartphones_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
+//    ui->table_smartphones->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->table_tvs->setColumnCount(8);
-    ui->table_tvs->setRowCount(0);
+    ui->table_tvs_3->setColumnCount(8);
+    ui->table_tvs_3->setRowCount(0);
     QStringList Title_tv;
     Title_tv << "ID"
              << "Artikul"
@@ -58,11 +58,11 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
              << "Screen size"
              << "Internet connect"
              << "Number channels";
-    ui->table_tvs->setHorizontalHeaderLabels(Title_tv);
-    ui->table_tvs->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->table_tvs->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
-    ui->table_tvs->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
-    ui->table_tvs->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->table_tvs_3->setHorizontalHeaderLabels(Title_tv);
+    ui->table_tvs_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_tvs_3->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
+    ui->table_tvs_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
+//    ui->table_tvs->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->menu->setCurrentIndex(0);
 
@@ -102,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->table_shops->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->table_shops->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
     ui->table_shops->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
-    ui->table_shops->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//    ui->table_shops->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->number_shops->setText(QString::number(shops->get_count_all_shops()));
 
@@ -114,6 +114,13 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
 
     ui->menuHelp->addAction("How use this program...", this, SLOT(help()));
     ui->menuHelp->addAction("About program", this, SLOT(about_program()));
+
+    ui->tables->setCurrentIndex(0);
+
+    ui->search_table->setColumnCount(8);
+    ui->search_table->setRowCount(0);
+    ui->search_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->search_table->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 MainWindow::~MainWindow()
@@ -128,9 +135,9 @@ void MainWindow::update_table() {
 
     product* current = current_shop->ware->get_head();
 
-    ui->table_notebooks->setRowCount(number_notebooks);
-    ui->table_smartphones->setRowCount(number_smartphones);
-    ui->table_tvs->setRowCount(number_tvs);
+    ui->table_notebooks_3->setRowCount(number_notebooks);
+    ui->table_smartphones_3->setRowCount(number_smartphones);
+    ui->table_tvs_3->setRowCount(number_tvs);
 
     ui->count_notebooks->setText(QString::number(current_shop->get_ware()->get_count_notebooks()));
     ui->count_smartphones->setText(QString::number(current_shop->get_ware()->get_count_smartphones()));
@@ -143,69 +150,69 @@ void MainWindow::update_table() {
 
         if (current->get_category() == "Notebook") {
             item = new QTableWidgetItem(QString::number(current->get_current()));
-            ui->table_notebooks->setItem(i1, 0, item);
+            ui->table_notebooks_3->setItem(i1, 0, item);
             item = new QTableWidgetItem(current->get_iid());
-            ui->table_notebooks->setItem(i1, 1, item);
+            ui->table_notebooks_3->setItem(i1, 1, item);
             item = new QTableWidgetItem(current->get_number());
-            ui->table_notebooks->setItem(i1, 2, item);
+            ui->table_notebooks_3->setItem(i1, 2, item);
             item = new QTableWidgetItem(current->get_cost());
-            ui->table_notebooks->setItem(i1, 3, item);
+            ui->table_notebooks_3->setItem(i1, 3, item);
             item = new QTableWidgetItem(current->get_firma());
-            ui->table_notebooks->setItem(i1, 4, item);
+            ui->table_notebooks_3->setItem(i1, 4, item);
             item = new QTableWidgetItem(current->get_first());
-            ui->table_notebooks->setItem(i1, 5, item);
+            ui->table_notebooks_3->setItem(i1, 5, item);
             item = new QTableWidgetItem(current->get_second());
-            ui->table_notebooks->setItem(i1, 6, item);
+            ui->table_notebooks_3->setItem(i1, 6, item);
             item = new QTableWidgetItem(current->get_third());
-            ui->table_notebooks->setItem(i1, 7, item);
+            ui->table_notebooks_3->setItem(i1, 7, item);
             i1++;
         }
 
         if (current->get_category() == "Smartphone") {
             item = new QTableWidgetItem(QString::number(current->get_current()));
-            ui->table_smartphones->setItem(i2, 0, item);
+            ui->table_smartphones_3->setItem(i2, 0, item);
             item = new QTableWidgetItem(current->get_iid());
-            ui->table_smartphones->setItem(i2, 1, item);
+            ui->table_smartphones_3->setItem(i2, 1, item);
             item = new QTableWidgetItem(current->get_number());
-            ui->table_smartphones->setItem(i2, 2, item);
+            ui->table_smartphones_3->setItem(i2, 2, item);
             item = new QTableWidgetItem(current->get_cost());
-            ui->table_smartphones->setItem(i2, 3, item);
+            ui->table_smartphones_3->setItem(i2, 3, item);
             item = new QTableWidgetItem(current->get_firma());
-            ui->table_smartphones->setItem(i2, 4, item);
+            ui->table_smartphones_3->setItem(i2, 4, item);
             item = new QTableWidgetItem(current->get_first());
-            ui->table_smartphones->setItem(i2, 5, item);
+            ui->table_smartphones_3->setItem(i2, 5, item);
             item = new QTableWidgetItem(current->get_second());
-            ui->table_smartphones->setItem(i2, 6, item);
+            ui->table_smartphones_3->setItem(i2, 6, item);
             item = new QTableWidgetItem(current->get_third());
-            ui->table_smartphones->setItem(i2, 7, item);
+            ui->table_smartphones_3->setItem(i2, 7, item);
             i2++;
         }
 
         if (current->get_category() == "TV") {
             item = new QTableWidgetItem(QString::number(current->get_current()));
-            ui->table_tvs->setItem(i3, 0, item);
+            ui->table_tvs_3->setItem(i3, 0, item);
             item = new QTableWidgetItem(current->get_iid());
-            ui->table_tvs->setItem(i3, 1, item);
+            ui->table_tvs_3->setItem(i3, 1, item);
             item = new QTableWidgetItem(current->get_number());
-            ui->table_tvs->setItem(i3, 2, item);
+            ui->table_tvs_3->setItem(i3, 2, item);
             item = new QTableWidgetItem(current->get_cost());
-            ui->table_tvs->setItem(i3, 3, item);
+            ui->table_tvs_3->setItem(i3, 3, item);
             item = new QTableWidgetItem(current->get_firma());
-            ui->table_tvs->setItem(i3, 4, item);
+            ui->table_tvs_3->setItem(i3, 4, item);
             item = new QTableWidgetItem(current->get_first());
-            ui->table_tvs->setItem(i3, 5, item);
+            ui->table_tvs_3->setItem(i3, 5, item);
             item = new QTableWidgetItem(current->get_second());
-            ui->table_tvs->setItem(i3, 6, item);
+            ui->table_tvs_3->setItem(i3, 6, item);
             item = new QTableWidgetItem(current->get_third());
-            ui->table_tvs->setItem(i3, 7, item);
+            ui->table_tvs_3->setItem(i3, 7, item);
             i3++;
         }
 
         current = current->get_next();
     }
-    ui->table_notebooks->clearSelection();
-    ui->table_smartphones->clearSelection();
-    ui->table_tvs->clearSelection();
+    ui->table_notebooks_3->clearSelection();
+    ui->table_smartphones_3->clearSelection();
+    ui->table_tvs_3->clearSelection();
 }
 
 void MainWindow::update_table_shops() {
@@ -471,20 +478,20 @@ void MainWindow::on_add_tv_clicked()
 
 void MainWindow::on_edit_product_clicked()
 {
-    if (ui->table_notebooks->rowCount() == 0 && ui->table_smartphones->rowCount() == 0 && ui->table_tvs->rowCount() == 0) {
+    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) {
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_notebooks->currentRow() == -1 && ui->table_smartphones->currentRow() == -1 && ui->table_tvs->currentRow() == -1) {
+        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) {
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
         else {
-            int row_notebook = ui->table_notebooks->currentRow();
-            int row_smartphone = ui->table_smartphones->currentRow();
-            int row_tv = ui->table_tvs->currentRow();
+            int row_notebook = ui->table_notebooks_3->currentRow();
+            int row_smartphone = ui->table_smartphones_3->currentRow();
+            int row_tv = ui->table_tvs_3->currentRow();
             int id_product = 0;
             if (row_notebook != -1) {
-                QTableWidgetItem *curitem = ui->table_notebooks->item(row_notebook, 0);
+                QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
                 ui->menu->setCurrentIndex(6);
                 id_product = curitem->text().toInt();
                 product* edit_product = current_shop->ware->find_node(id_product);
@@ -497,7 +504,7 @@ void MainWindow::on_edit_product_clicked()
                 ui->architecture_2->setCurrentText(edit_product->get_third());
             }
             if (row_smartphone != -1) {
-                QTableWidgetItem *curitem = ui->table_smartphones->item(row_smartphone, 0);
+                QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
                 ui->menu->setCurrentIndex(7);
                 id_product = curitem->text().toInt();
                 product* edit_product = current_shop->ware->find_node(id_product);
@@ -510,7 +517,7 @@ void MainWindow::on_edit_product_clicked()
                 ui->year_production_2->setText(edit_product->get_third());
             }
             if (row_tv != -1) {
-                QTableWidgetItem *curitem = ui->table_tvs->item(row_tv, 0);
+                QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
                 ui->menu->setCurrentIndex(8);
                 id_product = curitem->text().toInt();
                 product* edit_product = current_shop->ware->find_node(id_product);
@@ -534,23 +541,23 @@ void MainWindow::on_edit_product_clicked()
 void MainWindow::on_cancel_notebook_2_clicked()
 {
     ui->menu->setCurrentIndex(0);
-    ui->table_notebooks->clearSelection();
-    ui->table_smartphones->clearSelection();
-    ui->table_tvs->clearSelection();
+    ui->table_notebooks_3->clearSelection();
+    ui->table_smartphones_3->clearSelection();
+    ui->table_tvs_3->clearSelection();
 
     ui->artikul_notebook_2->clear();
     ui->number_notebook_2->clear();
     ui->cost_notebook_2->clear();
     ui->memory_2->clear();
-    ui->table_notebooks->clearSelection();
+    ui->table_notebooks_3->clearSelection();
 }
 
 void MainWindow::on_cancel_smartphone_2_clicked()
 {
      ui->menu->setCurrentIndex(0);
-     ui->table_notebooks->clearSelection();
-     ui->table_smartphones->clearSelection();
-     ui->table_tvs->clearSelection();
+     ui->table_notebooks_3->clearSelection();
+     ui->table_smartphones_3->clearSelection();
+     ui->table_tvs_3->clearSelection();
 
      ui->artikul_smartphone_2->clear();
      ui->number_smartphone_2->clear();
@@ -558,15 +565,15 @@ void MainWindow::on_cancel_smartphone_2_clicked()
      ui->screen_size_sm_2->clear();
      ui->hours_working_2->clear();
      ui->year_production_2->clear();
-     ui->table_smartphones->clearSelection();
+     ui->table_smartphones_3->clearSelection();
 }
 
 void MainWindow::on_cancel_tv_2_clicked()
 {
      ui->menu->setCurrentIndex(0);
-     ui->table_notebooks->clearSelection();
-     ui->table_smartphones->clearSelection();
-     ui->table_tvs->clearSelection();
+     ui->table_notebooks_3->clearSelection();
+     ui->table_smartphones_3->clearSelection();
+     ui->table_tvs_3->clearSelection();
 
      ui->artikul_tv_2->clear();
      ui->number_tv_2->clear();
@@ -574,7 +581,7 @@ void MainWindow::on_cancel_tv_2_clicked()
      ui->screen_size_2->clear();
      ui->internet_connect_2->clearFocus();
      ui->number_chanels_2->clear();
-     ui->table_tvs->clearSelection();
+     ui->table_tvs_3->clearSelection();
 }
 
 void MainWindow::on_change_notebook_clicked()
@@ -609,8 +616,8 @@ void MainWindow::on_change_notebook_clicked()
         ui->memory_2->setStyleSheet("background-color: white");
     }
     if (correct_data == true) {
-        int row_notebook = ui->table_notebooks->currentRow();
-        QTableWidgetItem *curitem = ui->table_notebooks->item(row_notebook, 0);
+        int row_notebook = ui->table_notebooks_3->currentRow();
+        QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
         int id_product = curitem->text().toInt();
 
         QString artikul = ui->artikul_notebook_2->text();
@@ -631,9 +638,9 @@ void MainWindow::on_change_notebook_clicked()
         ui->cost_notebook_2->clear();
         ui->memory_2->clear();
 
-        ui->table_notebooks->clearSelection();
-        ui->table_smartphones->clearSelection();
-        ui->table_tvs->clearSelection();
+        ui->table_notebooks_3->clearSelection();
+        ui->table_smartphones_3->clearSelection();
+        ui->table_tvs_3->clearSelection();
 
         isModicate = true;
     }
@@ -685,8 +692,8 @@ void MainWindow::on_change_smartphone_clicked()
         ui->year_production->setStyleSheet("background-color: white");
     }
     if (correct_data == true) {
-        int row_smartphone = ui->table_smartphones->currentRow();
-        QTableWidgetItem *curitem = ui->table_smartphones->item(row_smartphone, 0);
+        int row_smartphone = ui->table_smartphones_3->currentRow();
+        QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
         int id_product = curitem->text().toInt();
 
         QString artikul = ui->artikul_smartphone_2->text();
@@ -709,9 +716,9 @@ void MainWindow::on_change_smartphone_clicked()
         ui->hours_working_2->clear();
         ui->year_production_2->clear();
 
-        ui->table_notebooks->clearSelection();
-        ui->table_smartphones->clearSelection();
-        ui->table_tvs->clearSelection();
+        ui->table_notebooks_3->clearSelection();
+        ui->table_smartphones_3->clearSelection();
+        ui->table_tvs_3->clearSelection();
 
         isModicate = true;
     }
@@ -749,8 +756,8 @@ void MainWindow::on_change_tv_clicked()
         ui->screen_size_2->setStyleSheet("background-color: white");
     }
     if (correct_data == true) {
-        int row_tv = ui->table_tvs->currentRow();
-        QTableWidgetItem *curitem = ui->table_tvs->item(row_tv, 0);
+        int row_tv = ui->table_tvs_3->currentRow();
+        QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
         int id_product = curitem->text().toInt();
 
         QString artikul = ui->artikul_tv_2->text();
@@ -779,9 +786,9 @@ void MainWindow::on_change_tv_clicked()
         ui->internet_connect_2->clearFocus();
         ui->number_chanels_2->clear();
 
-        ui->table_notebooks->clearSelection();
-        ui->table_smartphones->clearSelection();
-        ui->table_tvs->clearSelection();
+        ui->table_notebooks_3->clearSelection();
+        ui->table_smartphones_3->clearSelection();
+        ui->table_tvs_3->clearSelection();
 
         isModicate = true;
     }
@@ -794,38 +801,38 @@ void MainWindow::on_cancel_clicked()
 
 void MainWindow::on_delete_product_clicked()
 {
-    if (ui->table_notebooks->rowCount() == 0 && ui->table_smartphones->rowCount() == 0 && ui->table_tvs->rowCount() == 0) {
+    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) {
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_notebooks->currentRow() == -1 && ui->table_smartphones->currentRow() == -1 && ui->table_tvs->currentRow() == -1) {
+        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) {
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
         else {
-            int row_notebook = ui->table_notebooks->currentRow();
-            int row_smartphone = ui->table_smartphones->currentRow();
-            int row_tv = ui->table_tvs->currentRow();
+            int row_notebook = ui->table_notebooks_3->currentRow();
+            int row_smartphone = ui->table_smartphones_3->currentRow();
+            int row_tv = ui->table_tvs_3->currentRow();
             int id_product = 0;
             if (row_notebook != -1) {
-                QTableWidgetItem *curitem = ui->table_notebooks->item(row_notebook, 0);
+                QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
             if (row_smartphone != -1) {
-                QTableWidgetItem *curitem = ui->table_smartphones->item(row_smartphone, 0);
+                QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
             if (row_tv != -1) {
-                QTableWidgetItem *curitem = ui->table_tvs->item(row_tv, 0);
+                QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
         }
         ui->menu->setCurrentIndex(0);
-        ui->table_notebooks->clearSelection();
-        ui->table_smartphones->clearSelection();
-        ui->table_tvs->clearSelection();
+        ui->table_notebooks_3->clearSelection();
+        ui->table_smartphones_3->clearSelection();
+        ui->table_tvs_3->clearSelection();
 
         update_table();
     }
@@ -1197,3 +1204,446 @@ void MainWindow::on_edit_shop_data_clicked()
     ui->phone_shop_2->setText(edit_shop->get_phone());
     ui->adress_shop_2->setText(edit_shop->get_adress());
 }
+
+void MainWindow::on_search_product_clicked()
+{
+    ui->menu->setCurrentIndex(1);
+}
+
+void MainWindow::on_cancel_search_clicked()
+{
+    ui->menu->setCurrentIndex(0);
+    ui->tables->setCurrentIndex(0);
+}
+
+void MainWindow::on_search_by_cost_clicked()
+{
+    ui->menu->setCurrentIndex(12);
+    ui->min_cost->setText("0");
+    ui->max_cost->setText("10000000");
+    ui->tables->setCurrentIndex(1);
+}
+
+void MainWindow::on_search_cost_product_clicked()
+{
+    bool correct_data = true;
+    if (ui->min_cost->text().isEmpty()) {
+        correct_data = false;
+        ui->min_cost->setStyleSheet("background-color: red");
+    }
+    else {
+        ui->min_cost->setStyleSheet("background-color: white");
+    }
+    if (ui->max_cost->text().isEmpty()) {
+        correct_data = false;
+        ui->max_cost->setStyleSheet("background-color: red");
+    }
+    else {
+        ui->max_cost->setStyleSheet("background-color: white");
+    }
+    if ((ui->min_cost->text()).toFloat() > (ui->max_cost->text()).toFloat()) {
+        correct_data = false;
+        ui->min_cost->setStyleSheet("background-color: red");
+        ui->max_cost->setStyleSheet("background-color: red");
+        QMessageBox::critical(this, "Error", "You entered wrong cost characteristics!");
+    }
+    else {
+        ui->min_cost->setStyleSheet("background-color: white");
+        ui->max_cost->setStyleSheet("background-color: white");
+    }
+    if (correct_data == true) {
+        float minimum = (ui->min_cost->text()).toFloat();
+        float maximum = (ui->max_cost->text()).toFloat();
+        QString type = ui->type_product->currentText();
+        bool all_shops_search = ui->where_search->isChecked();
+        int count_results = 0;
+        if (type == "Notebook" || type == "Smartphone" || type == "TV") {
+            QStringList Title_product;
+            if (type == "Notebook") {
+                Title_product << "ID"
+                              << "Artikul"
+                              << "Number"
+                              << "Cost"
+                              << "Firma"
+                              << "Memory size"
+                              << "Rasrad"
+                              << "Architecture";
+            }
+            if (type == "Smartphone") {
+                Title_product << "ID"
+                                 << "Artikul"
+                                 << "Number"
+                                 << "Cost"
+                                 << "Firma"
+                                 << "Screen size"
+                                 << "Hours working"
+                                 << "Year production";
+            }
+            if (type == "TV") {
+                Title_product << "ID"
+                         << "Artikul"
+                         << "Number"
+                         << "Cost"
+                         << "Firma"
+                         << "Screen size"
+                         << "Internet connect"
+                         << "Number channels";
+            }
+            ui->search_table->setHorizontalHeaderLabels(Title_product);
+            if (all_shops_search == true) {
+                shop* search_shop = shops->get_head();
+                QTableWidgetItem *item;
+                int i = 0;
+                count_results = 0;
+                while (search_shop != nullptr) {
+                    list_product* search_products = search_shop->get_ware();
+                    product* current_search = search_products->head;
+                    while (current_search != nullptr) {
+                        if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) {
+                            count_results++;
+                            ui->search_table->setRowCount(count_results);
+                            item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                            ui->search_table->setItem(i, 0, item);
+                            item = new QTableWidgetItem(current_search->get_iid());
+                            ui->search_table->setItem(i, 1, item);
+                            item = new QTableWidgetItem(current_search->get_number());
+                            ui->search_table->setItem(i, 2, item);
+                            item = new QTableWidgetItem(current_search->get_cost());
+                            ui->search_table->setItem(i, 3, item);
+                            item = new QTableWidgetItem(current_search->get_firma());
+                            ui->search_table->setItem(i, 4, item);
+                            item = new QTableWidgetItem(current_search->get_first());
+                            ui->search_table->setItem(i, 5, item);
+                            item = new QTableWidgetItem(current_search->get_second());
+                            ui->search_table->setItem(i, 6, item);
+                            item = new QTableWidgetItem(current_search->get_third());
+                            ui->search_table->setItem(i, 7, item);
+                            i++;
+                        }
+                        current_search = current_search->next;
+                    }
+                    search_shop = search_shop->get_next();
+                }
+                ui->number_res_search->setText(QString::number(count_results));
+            }
+            else {
+                list_product* search_products = current_shop->get_ware();
+                product* current_search = search_products->head;
+                QTableWidgetItem *item;
+                int i = 0;
+                count_results = 0;
+                while (current_search != nullptr) {
+                    if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) {
+                        count_results++;
+                        ui->search_table->setRowCount(count_results);
+                        item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                        ui->search_table->setItem(i, 0, item);
+                        item = new QTableWidgetItem(current_search->get_iid());
+                        ui->search_table->setItem(i, 1, item);
+                        item = new QTableWidgetItem(current_search->get_number());
+                        ui->search_table->setItem(i, 2, item);
+                        item = new QTableWidgetItem(current_search->get_cost());
+                        ui->search_table->setItem(i, 3, item);
+                        item = new QTableWidgetItem(current_search->get_firma());
+                        ui->search_table->setItem(i, 4, item);
+                        item = new QTableWidgetItem(current_search->get_first());
+                        ui->search_table->setItem(i, 5, item);
+                        item = new QTableWidgetItem(current_search->get_second());
+                        ui->search_table->setItem(i, 6, item);
+                        item = new QTableWidgetItem(current_search->get_third());
+                        ui->search_table->setItem(i, 7, item);
+                        i++;
+                    }
+                    current_search = current_search->next;
+                }
+            ui->number_res_search->setText(QString::number(count_results));
+            }
+        }
+        else {
+            QStringList Title;
+            Title << "ID"
+                  << "Type"
+                  << "Artikul"
+                  << "Number"
+                  << "Cost"
+                  << "Firma"
+                  << "Optional";
+            ui->search_table->setColumnCount(7);
+            ui->search_table->setHorizontalHeaderLabels(Title);
+            if (all_shops_search == true) {
+                shop* search_shop = shops->get_head();
+                QTableWidgetItem *item;
+                int i = 0;
+                count_results = 0;
+                while (search_shop != nullptr) {
+                    list_product* search_products = search_shop->get_ware();
+                    product* current_search = search_products->head;
+                    while (current_search != nullptr) {
+                        if (minimum <= (current_search->get_cost()).toFloat() <= maximum) {
+                            count_results++;
+                            ui->search_table->setRowCount(count_results);
+                            item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                            ui->search_table->setItem(i, 0, item);
+                            item = new QTableWidgetItem(current_search->get_category());
+                            ui->search_table->setItem(i, 1, item);
+                            item = new QTableWidgetItem(current_search->get_iid());
+                            ui->search_table->setItem(i, 2, item);
+                            item = new QTableWidgetItem(current_search->get_number());
+                            ui->search_table->setItem(i, 3, item);
+                            item = new QTableWidgetItem(current_search->get_cost());
+                            ui->search_table->setItem(i, 4, item);
+                            item = new QTableWidgetItem(current_search->get_firma());
+                            ui->search_table->setItem(i, 5, item);
+                            item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
+                            ui->search_table->setItem(i, 6, item);
+                            i++;
+                        }
+                        current_search = current_search->next;
+                    }
+                    search_shop = search_shop->get_next();
+                }
+                ui->number_res_search->setText(QString::number(count_results));
+            }
+            else {
+                list_product* search_products = current_shop->get_ware();
+                product* current_search = search_products->head;
+                QTableWidgetItem *item;
+                int i = 0;
+                count_results = 0;
+                while (current_search != nullptr) {
+                    if (minimum <= (current_search->get_cost()).toFloat() <= maximum) {
+                        count_results++;
+                        ui->search_table->setRowCount(count_results);
+                        item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                        ui->search_table->setItem(i, 0, item);
+                        item = new QTableWidgetItem(current_search->get_category());
+                        ui->search_table->setItem(i, 1, item);
+                        item = new QTableWidgetItem(current_search->get_iid());
+                        ui->search_table->setItem(i, 2, item);
+                        item = new QTableWidgetItem(current_search->get_number());
+                        ui->search_table->setItem(i, 3, item);
+                        item = new QTableWidgetItem(current_search->get_cost());
+                        ui->search_table->setItem(i, 4, item);
+                        item = new QTableWidgetItem(current_search->get_firma());
+                        ui->search_table->setItem(i, 5, item);
+                        item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
+                        ui->search_table->setItem(i, 6, item);
+                        i++;
+                    }
+                    current_search = current_search->next;
+                }
+            ui->number_res_search->setText(QString::number(count_results));
+            }
+        }
+        ui->min_cost->setText("0");
+        ui->max_cost->setText("10000000");
+    }
+}
+void MainWindow::on_cancel_search_2_clicked()
+{
+    ui->menu->setCurrentIndex(0);
+    ui->tables->setCurrentIndex(0);
+}
+
+void MainWindow::on_search_by_firm_clicked()
+{
+    ui->menu->setCurrentIndex(13);
+    ui->tables->setCurrentIndex(1);
+}
+
+void MainWindow::on_search_firm_product_clicked()
+{
+   bool correct_data = true;
+   if (ui->name_firm->text().isEmpty()) {
+       correct_data = false;
+       ui->name_firm->setStyleSheet("background-color: red");
+   }
+   else {
+       ui->name_firm->setStyleSheet("background-color: white");
+   }
+   if (correct_data == true) {
+       QString search_firm = ui->name_firm->text();
+       bool all_shops_search = ui->where_search_2->isChecked();
+       QString type = ui->type_product_2->currentText();
+       int count_results = 0;
+       if (type == "Notebook" || type == "Smartphone" || type == "TV") {
+           QStringList Title_product;
+           if (type == "Notebook") {
+               Title_product << "ID"
+                             << "Artikul"
+                             << "Number"
+                             << "Cost"
+                             << "Firma"
+                             << "Memory size"
+                             << "Rasrad"
+                             << "Architecture";
+           }
+           if (type == "Smartphone") {
+               Title_product << "ID"
+                                << "Artikul"
+                                << "Number"
+                                << "Cost"
+                                << "Firma"
+                                << "Screen size"
+                                << "Hours working"
+                                << "Year production";
+           }
+           if (type == "TV") {
+               Title_product << "ID"
+                        << "Artikul"
+                        << "Number"
+                        << "Cost"
+                        << "Firma"
+                        << "Screen size"
+                        << "Internet connect"
+                        << "Number channels";
+           }
+           ui->search_table->setHorizontalHeaderLabels(Title_product);
+           if (all_shops_search == true) {
+               shop* search_shop = shops->get_head();
+               QTableWidgetItem *item;
+               int i = 0;
+               count_results = 0;
+               while (search_shop != nullptr) {
+                   list_product* search_products = search_shop->get_ware();
+                   product* current_search = search_products->head;
+                   while (current_search != nullptr) {
+                       if (current_search->get_firma() == search_firm && (current_search->get_category() == type)) {
+                           count_results++;
+                           ui->search_table->setRowCount(count_results);
+                           item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                           ui->search_table->setItem(i, 0, item);
+                           item = new QTableWidgetItem(current_search->get_iid());
+                           ui->search_table->setItem(i, 1, item);
+                           item = new QTableWidgetItem(current_search->get_number());
+                           ui->search_table->setItem(i, 2, item);
+                           item = new QTableWidgetItem(current_search->get_cost());
+                           ui->search_table->setItem(i, 3, item);
+                           item = new QTableWidgetItem(current_search->get_firma());
+                           ui->search_table->setItem(i, 4, item);
+                           item = new QTableWidgetItem(current_search->get_first());
+                           ui->search_table->setItem(i, 5, item);
+                           item = new QTableWidgetItem(current_search->get_second());
+                           ui->search_table->setItem(i, 6, item);
+                           item = new QTableWidgetItem(current_search->get_third());
+                           ui->search_table->setItem(i, 7, item);
+                           i++;
+                       }
+                       current_search = current_search->next;
+                   }
+                   search_shop = search_shop->get_next();
+               }
+               ui->number_res_search->setText(QString::number(count_results));
+           }
+           else {
+               list_product* search_products = current_shop->get_ware();
+               product* current_search = search_products->head;
+               QTableWidgetItem *item;
+               int i = 0;
+               count_results = 0;
+               while (current_search != nullptr) {
+                   if (current_search->get_firma() == search_firm && (current_search->get_category() == type)) {
+                       count_results++;
+                       ui->search_table->setRowCount(count_results);
+                       item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                       ui->search_table->setItem(i, 0, item);
+                       item = new QTableWidgetItem(current_search->get_iid());
+                       ui->search_table->setItem(i, 1, item);
+                       item = new QTableWidgetItem(current_search->get_number());
+                       ui->search_table->setItem(i, 2, item);
+                       item = new QTableWidgetItem(current_search->get_cost());
+                       ui->search_table->setItem(i, 3, item);
+                       item = new QTableWidgetItem(current_search->get_firma());
+                       ui->search_table->setItem(i, 4, item);
+                       item = new QTableWidgetItem(current_search->get_first());
+                       ui->search_table->setItem(i, 5, item);
+                       item = new QTableWidgetItem(current_search->get_second());
+                       ui->search_table->setItem(i, 6, item);
+                       item = new QTableWidgetItem(current_search->get_third());
+                       ui->search_table->setItem(i, 7, item);
+                       i++;
+                   }
+                   current_search = current_search->next;
+               }
+           ui->number_res_search->setText(QString::number(count_results));
+           }
+       }
+       else {
+           QStringList Title;
+           Title << "ID"
+                 << "Type"
+                 << "Artikul"
+                 << "Number"
+                 << "Cost"
+                 << "Firma"
+                 << "Optional";
+           ui->search_table->setColumnCount(7);
+           ui->search_table->setHorizontalHeaderLabels(Title);
+           if (all_shops_search == true) {
+               shop* search_shop = shops->get_head();
+               QTableWidgetItem *item;
+               int i = 0;
+               count_results = 0;
+               while (search_shop != nullptr) {
+                   list_product* search_products = search_shop->get_ware();
+                   product* current_search = search_products->head;
+                   while (current_search != nullptr) {
+                       if (current_search->get_firma() == search_firm) {
+                           count_results++;
+                           ui->search_table->setRowCount(count_results);
+                           item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                           ui->search_table->setItem(i, 0, item);
+                           item = new QTableWidgetItem(current_search->get_category());
+                           ui->search_table->setItem(i, 1, item);
+                           item = new QTableWidgetItem(current_search->get_iid());
+                           ui->search_table->setItem(i, 2, item);
+                           item = new QTableWidgetItem(current_search->get_number());
+                           ui->search_table->setItem(i, 3, item);
+                           item = new QTableWidgetItem(current_search->get_cost());
+                           ui->search_table->setItem(i, 4, item);
+                           item = new QTableWidgetItem(current_search->get_firma());
+                           ui->search_table->setItem(i, 5, item);
+                           item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
+                           ui->search_table->setItem(i, 6, item);
+                           i++;
+                       }
+                       current_search = current_search->next;
+                   }
+                   search_shop = search_shop->get_next();
+               }
+               ui->number_res_search->setText(QString::number(count_results));
+           }
+           else {
+               list_product* search_products = current_shop->get_ware();
+               product* current_search = search_products->head;
+               QTableWidgetItem *item;
+               int i = 0;
+               count_results = 0;
+               while (current_search != nullptr) {
+                   if (current_search->get_firma() == search_firm) {
+                       count_results++;
+                       ui->search_table->setRowCount(count_results);
+                       item = new QTableWidgetItem(QString::number(current_search->get_current()));
+                       ui->search_table->setItem(i, 0, item);
+                       item = new QTableWidgetItem(current_search->get_category());
+                       ui->search_table->setItem(i, 1, item);
+                       item = new QTableWidgetItem(current_search->get_iid());
+                       ui->search_table->setItem(i, 2, item);
+                       item = new QTableWidgetItem(current_search->get_number());
+                       ui->search_table->setItem(i, 3, item);
+                       item = new QTableWidgetItem(current_search->get_cost());
+                       ui->search_table->setItem(i, 4, item);
+                       item = new QTableWidgetItem(current_search->get_firma());
+                       ui->search_table->setItem(i, 5, item);
+                       item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
+                       ui->search_table->setItem(i, 6, item);
+                       i++;
+                   }
+                   current_search = current_search->next;
+               }
+           ui->number_res_search->setText(QString::number(count_results));
+           }
+       }
+   }
+}
+
