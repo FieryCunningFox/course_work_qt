@@ -48,8 +48,6 @@ private:
 
     static int count_all_shops;
 
-    shop* Prev(shop* node); // переход к предыдущему узлу
-
 public:
     shop_list();
 
@@ -66,14 +64,14 @@ public:
     static int get_count_all_shops() { return count_all_shops; }
 
     shop* Follow(shop* node); // переход к следующему узлу
+    shop* Prev(shop* node); // переход к предыдущему узлу
 
-    shop* find_node(int id_shop);
+    shop* find_node(int id_shop); // поиск магазина
 
     void add_node(shop* new_shop); // добавление нового магазина в сеть
+    void delete_node(int id_shop); // удаление магазина
 
-    void delete_node(int id_shop);
-
-    void clear_list();
+    void clear_list(); // очистка сети магазинов
 };
 
 #endif // SHOP_H

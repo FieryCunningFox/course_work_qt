@@ -27,14 +27,12 @@ void shop::set_phone(QString m_phone) { phone = m_phone; }
 void shop::set_next(shop* m_next) { next = m_next; }
 
 
-shop_list::shop_list() {
-    head = NULL;
-} // конструктор
+shop_list::shop_list() { head = nullptr; } // конструктор
 
 shop* shop_list::get_head() { return head; }
 
 shop* shop_list::Follow(shop* node) { // переход к следующему узлу
-    if (node == NULL) { return NULL; }
+    if (node == nullptr) { return nullptr; }
     return node->next;
 }
 

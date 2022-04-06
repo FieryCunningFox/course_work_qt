@@ -1,7 +1,7 @@
 #include "product.h"
 
 product::product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_category, product* m_next, int m_current): // конструктор
-    category(m_category), iid(m_iid), number(m_number), cost(m_cost), firma(m_firma), next(m_next), current(m_current)
+    next(m_next), category(m_category), iid(m_iid), number(m_number), cost(m_cost), firma(m_firma), current(m_current)
 {
     current = number_products;
     number_products++;
@@ -34,34 +34,48 @@ void product::set_data_product_main(QString m_iid, QString m_number, QString m_c
 
 notebook::notebook(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch): // конструктор
     product(m_iid, m_number, m_cost, m_firma, "Notebook", nullptr, 0), memory_size(m_memory_size), rasrad(m_rasrad), arch(m_arch)
-{
-    number_notebooks++;
+{ number_notebooks++; }
+
+QString notebook::get_first() { return memory_size; }
+QString notebook::get_second() { return rasrad; }
+QString notebook::get_third() { return arch; }
+
+void notebook::set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_memory_size, QString m_rasrad, QString m_arch) { // установка данных о товаре
+    product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
+    memory_size = m_memory_size;
+    rasrad = m_rasrad;
+    arch = m_arch;
 }
-
-QString notebook::get_memory_size() { return memory_size; }
-QString notebook::get_rasrad() { return rasrad; }
-QString notebook::get_arch() { return arch; }
-
 
 smartphone::smartphone(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production): // конструктор
     product(m_iid, m_number, m_cost, m_firma, "Smartphone", nullptr, 0), screen_size(m_screen_size), hours_working(m_hours_working), year_production(m_year_production)
-{
-    number_smartphones++;
+{ number_smartphones++; }
+
+QString smartphone::get_first() { return screen_size; }
+QString smartphone::get_second() { return hours_working; }
+QString smartphone::get_third() { return year_production; }
+
+void smartphone::set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_hours_working, QString m_year_production) {
+    product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
+    screen_size = m_screen_size;
+    hours_working = m_hours_working;
+    year_production = m_year_production;
 }
 
-QString smartphone::get_screen_size() { return screen_size; }
-QString smartphone::get_hours_working() { return hours_working; }
-QString smartphone::get_year_production() { return year_production; }
-
-
 tv::tv(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels): // конструктор
-    product(m_iid, m_number, m_cost, m_firma, "TV", nullptr, 0), screen_size(m_screen_size), internet_connect(m_internet_connect), number_channels(m_number_channels) {}
+    product(m_iid, m_number, m_cost, m_firma, "TV", nullptr, 0), screen_size(m_screen_size), internet_connect(m_internet_connect), number_channels(m_number_channels)
+{ number_tvs++; }
 
-// получение данных из приватных полей
-QString tv::get_screen_size() { return screen_size; }
-QString tv::get_internet_connect() { return internet_connect; }
-QString tv::get_number_px() { return number_channels; }
+QString tv::get_first() { return screen_size; }
+QString tv::get_second() { return internet_connect; }
+QString tv::get_third() { return number_channels; }
 
+void tv::set_data_product(QString m_iid, QString m_number, QString m_cost, QString m_firma, QString m_screen_size, QString m_internet_connect, QString m_number_channels) { // установка данных
+    product:: set_data_product_main(m_iid, m_number, m_cost, m_firma);
+    screen_size = m_screen_size;
+    internet_connect = m_internet_connect;
+    number_channels = m_number_channels;
+}
 
 product* list_product::Prev(product* node) { // переход к предыдущему узлу
     if (node == nullptr) { return nullptr; }
@@ -94,13 +108,6 @@ int list_product::get_count_smartphones() { return count_smartphones; }
 int list_product::get_count_tvs() { return count_tvs; }
 product* list_product::get_head() { return head; }
 
-void list_product::add_notebook() { count_notebooks++; }
-void list_product::add_smartphone() { count_smartphones++; }
-void list_product::add_tv() { count_tvs++; }
-
-void list_product::set_head(product* m_head) { head = m_head; }
-
-
 product* list_product::Follow(product* node) { // переход к следующему узлу
     if (node == nullptr) { return nullptr; }
     return node->next;
@@ -116,16 +123,10 @@ void list_product::delete_node(int id_product) {
     product* current_product = head;
     while (current_product != nullptr) {
         if (current_product->get_current() == id_product) {
-            if (current_product->get_category() == "Notebook") {
-                count_notebooks--;
-            }
+            if (current_product->get_category() == "Notebook") { count_notebooks--; }
             else {
-                if (current_product->get_category() == "Smartphone") {
-                    count_smartphones--;
-                }
-                else {
-                    count_tvs--;
-                }
+                if (current_product->get_category() == "Smartphone") { count_smartphones--; }
+                else { count_tvs--; }
             }
             count--;
             if (current_product == head) {
@@ -156,6 +157,9 @@ void list_product::add_node(product* new_node) {
         current->next = new_node;
     }
     count++;
+    if (new_node->get_category() == "Notebook") { count_notebooks++; }
+    if (new_node->get_category() == "Smartphone") { count_smartphones++; }
+    if (new_node->get_category() == "TV") { count_tvs++; }
 }
 
 product* list_product::find_node(int id_product) {

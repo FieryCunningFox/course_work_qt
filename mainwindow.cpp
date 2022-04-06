@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop* m_current_shop, bool m_isModificate, QString m_current_file)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow), shops(m_shops), current_shop_artikul(m_artikul), current_shop(m_current_shop), isModicate(m_isModificate), current_file(m_current_file)
@@ -9,11 +10,12 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
 
     setWindowTitle(tr("%1[*]").arg("Information about electronic shop"));
 
-    shops = new shop_list();
-    current_shop = new shop();
-    shops->add_node(current_shop);
+    shops = new shop_list(); // список всех магазинов
+    current_shop = new shop(); // текущий магазин
+    shops->add_node(current_shop); // добавление текущего магазина в спсок магазинов сети
 
-    ui->table_notebooks_3->setColumnCount(8);
+    // установка заголовков, количества столбцов по таблицам6 отображающим данные
+    ui->table_notebooks_3->setColumnCount(8); // таблица ноутбуков
     ui->table_notebooks_3->setRowCount(0);
     QStringList Title_notebook;
     Title_notebook << "ID"
@@ -30,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->table_notebooks_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
 //    ui->table_notebooks->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->table_smartphones_3->setColumnCount(8);
+    ui->table_smartphones_3->setColumnCount(8); // таблица смартфонов
     ui->table_smartphones_3->setRowCount(0);
     QStringList Title_smartphone;
     Title_smartphone << "ID"
@@ -47,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->table_smartphones_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
 //    ui->table_smartphones->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->table_tvs_3->setColumnCount(8);
+    ui->table_tvs_3->setColumnCount(8); // таблица телевизоров
     ui->table_tvs_3->setRowCount(0);
     QStringList Title_tv;
     Title_tv << "ID"
@@ -64,8 +66,25 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->table_tvs_3->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
 //    ui->table_tvs->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    ui->menu->setCurrentIndex(0);
+    ui->search_table->setColumnCount(8); // таблица с результатами поиска
+    ui->search_table->setRowCount(0);
+    ui->search_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->search_table->setSelectionMode(QAbstractItemView::SingleSelection);
 
+    ui->table_shops->setColumnCount(4); // таблица магазинов
+    ui->table_shops->setRowCount(current_shop->get_number_shop());
+    QStringList Title_shops;
+    Title_shops << "ID"
+                << "Name"
+                << "Adress"
+                << "Phone";
+    ui->table_shops->setHorizontalHeaderLabels(Title_shops);
+    ui->table_shops->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_shops->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
+    ui->table_shops->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
+//    ui->table_shops->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    // установка валидаторов для защиты от некорректных данных
     QRegExp num("[0-9]{1,11}");
     QValidator *numValidator = new QRegExpValidator(num, this);
     ui->artikul_notebook->setValidator(numValidator);
@@ -86,26 +105,14 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     QValidator *yearValidator = new QRegExpValidator(year, this);
     ui->year_production->setValidator(yearValidator);
 
+    // отображение текущего количества продуктов и магазинов
     ui->count_notebooks->setText(QString::number(current_shop->get_ware()->get_count_notebooks()));
     ui->count_smartphones->setText(QString::number(current_shop->get_ware()->get_count_smartphones()));
     ui->count_tvs->setText(QString::number(current_shop->get_ware()->get_count_tvs()));
     ui->all_products->setText(QString::number(current_shop->get_ware()->get_count()));
-
-    ui->table_shops->setColumnCount(4);
-    ui->table_shops->setRowCount(current_shop->get_number_shop());
-    QStringList Title_shops;
-    Title_shops << "ID"
-                << "Name"
-                << "Adress"
-                << "Phone";
-    ui->table_shops->setHorizontalHeaderLabels(Title_shops);
-    ui->table_shops->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->table_shops->setSelectionMode(QAbstractItemView::SingleSelection); //Запрет выбора больше одной строки
-    ui->table_shops->setSelectionBehavior(QAbstractItemView::SelectRows); //Выбор только строк
-//    ui->table_shops->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
     ui->number_shops->setText(QString::number(shops->get_count_all_shops()));
 
+    // файловое меню - добавление действий
     ui->menuFile->addAction("Create new", this, SLOT(new_file()));
     ui->menuFile->addAction("Open file", this, SLOT(open_file()));
     ui->menuFile->addAction("Save", this, SLOT(save_file()));
@@ -115,12 +122,8 @@ MainWindow::MainWindow(QWidget *parent, int m_artikul, shop_list* m_shops, shop*
     ui->menuHelp->addAction("How use this program...", this, SLOT(help()));
     ui->menuHelp->addAction("About program", this, SLOT(about_program()));
 
-    ui->tables->setCurrentIndex(0);
-
-    ui->search_table->setColumnCount(8);
-    ui->search_table->setRowCount(0);
-    ui->search_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->search_table->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->menu->setCurrentIndex(0); // главное меню выбора действий
+    ui->tables->setCurrentIndex(0); // отображение таблицы с продуктами
 }
 
 MainWindow::~MainWindow()
@@ -128,23 +131,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::update_table() {
+void MainWindow::update_table() { // обновление таблицы продуктов
     int number_notebooks = current_shop->get_ware()->get_count_notebooks();
     int number_smartphones = current_shop->get_ware()->get_count_smartphones();
     int number_tvs = current_shop->get_ware()->get_count_tvs();
 
-    product* current = current_shop->ware->get_head();
-
+    // установка нового количества строк в таблицах
     ui->table_notebooks_3->setRowCount(number_notebooks);
     ui->table_smartphones_3->setRowCount(number_smartphones);
     ui->table_tvs_3->setRowCount(number_tvs);
 
+    // отображение текущего количества продуктов и магазинов
     ui->count_notebooks->setText(QString::number(current_shop->get_ware()->get_count_notebooks()));
     ui->count_smartphones->setText(QString::number(current_shop->get_ware()->get_count_smartphones()));
     ui->count_tvs->setText(QString::number(current_shop->get_ware()->get_count_tvs()));
     ui->all_products->setText(QString::number(current_shop->get_ware()->get_count()));
 
-    int i1 = 0, i2 = 0, i3 = 0;
+    product* current = current_shop->ware->get_head();
+    int i1 = 0, i2 = 0, i3 = 0; // счетчики для заполнения таблиц
     while (current != nullptr){
         QTableWidgetItem *item;
 
@@ -210,16 +214,19 @@ void MainWindow::update_table() {
 
         current = current->get_next();
     }
+
+    // снятие фокуса строк с таблиц
     ui->table_notebooks_3->clearSelection();
     ui->table_smartphones_3->clearSelection();
     ui->table_tvs_3->clearSelection();
 }
 
-void MainWindow::update_table_shops() {
-    ui->number_shops->setText(QString::number(shops->get_count_all_shops()));
-    ui->table_shops->setRowCount(current_shop->get_number_shop());
+void MainWindow::update_table_shops() { // обновление таблицы магазинов
+    ui->number_shops->setText(QString::number(shops->get_count_all_shops())); // отображение количества магазинов
+    ui->table_shops->setRowCount(current_shop->get_number_shop()); // установка нового количества строк
+
     shop* current = shops->get_head();
-    int i = 0;
+    int i = 0; // счетчик для заполнения таблицы
     while (current != nullptr) {
         QTableWidgetItem *item;
         item = new QTableWidgetItem(QString::number(current->get_artikul()));
@@ -235,26 +242,14 @@ void MainWindow::update_table_shops() {
     }
 }
 
-void MainWindow::on_add_new_clicked()
-{
-    ui->menu->setCurrentIndex(5);
-}
+void MainWindow::on_add_new_clicked() { ui->menu->setCurrentIndex(5); } // добавление нового продукта - открытие формы с выбором типа продукта
 
-void MainWindow::on_notebook_clicked()
-{
-    ui->menu->setCurrentIndex(2);
-}
+// выбор типа продукта - открытие соответствующей формы для заполнения
+void MainWindow::on_notebook_clicked() { ui->menu->setCurrentIndex(2); }
+void MainWindow::on_smartphone_clicked() { ui->menu->setCurrentIndex(4); }
+void MainWindow::on_tv_clicked() { ui->menu->setCurrentIndex(3); }
 
-void MainWindow::on_smartphone_clicked()
-{
-    ui->menu->setCurrentIndex(4);
-}
-
-void MainWindow::on_tv_clicked()
-{
-    ui->menu->setCurrentIndex(3);
-}
-
+// отмена добавления продукта - возвращение в главное меню - очистка форм
 void MainWindow::on_cancel_tv_clicked()
 {
     ui->menu->setCurrentIndex(0);
@@ -265,7 +260,6 @@ void MainWindow::on_cancel_tv_clicked()
     ui->internet_connect->clearFocus();
     ui->number_chanels->clear();
 }
-
 void MainWindow::on_cancel_notebook_clicked()
 {
     ui->menu->setCurrentIndex(0);
@@ -274,7 +268,6 @@ void MainWindow::on_cancel_notebook_clicked()
     ui->cost_notebook->clear();
     ui->memory->clear();
 }
-
 void MainWindow::on_cancel_smartphone_clicked()
 {
     ui->menu->setCurrentIndex(0);
@@ -286,38 +279,35 @@ void MainWindow::on_cancel_smartphone_clicked()
     ui->year_production->clear();
 }
 
-void MainWindow::on_add_notebook_clicked()
+
+void MainWindow::on_add_notebook_clicked() // отправлка формы для добавления ноутбука
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности введенных данных
+
+    // проверка не пустые ли строки для ввода, если пустые - флаг изменяется, строка окрашивается в красный
     if (ui->artikul_notebook->text().isEmpty()) {
-        ui->artikul_notebook->setStyleSheet("background-color: red");
+        ui->artikul_notebook->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_notebook->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_notebook->setStyleSheet("background-color: white;"); }
     if (ui->number_notebook->text().isEmpty()) {
-        ui->number_notebook->setStyleSheet("background-color: red");
+        ui->number_notebook->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_notebook->setStyleSheet("background-color: white");
-    }
+    else { ui->number_notebook->setStyleSheet("background-color: white;"); }
     if (ui->cost_notebook->text().isEmpty()) {
-        ui->cost_notebook->setStyleSheet("background-color: red");
+        ui->cost_notebook->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_notebook->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_notebook->setStyleSheet("background-color: white;"); }
     if (ui->memory->text().isEmpty()) {
-        ui->memory->setStyleSheet("background-color: red");
+        ui->memory->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->memory->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
+    else { ui->memory->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если данные корректы
+        // считывание введенных данных
         QString artikul = ui->artikul_notebook->text();
         QString number = ui->number_notebook->text();
         QString cost = ui->cost_notebook->text();
@@ -325,68 +315,61 @@ void MainWindow::on_add_notebook_clicked()
         QString memory_size = ui->memory->text();
         QString rasrad = ui->rasrad->currentText();
         QString architecture = ui->architecture->currentText();
-        notebook* new_notebook = new notebook(artikul, number, cost, firma, memory_size, rasrad, architecture);
 
-        current_shop->ware->add_notebook();
-        current_shop->ware->add_node(new_notebook);
+        product* new_notebook = new notebook(artikul, number, cost, firma, memory_size, rasrad, architecture); // создание объекта с введенными данными
+        current_shop->ware->add_node(new_notebook); // добавление нового узла в список
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка формы и переход в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_notebook->clear();
         ui->number_notebook->clear();
         ui->cost_notebook->clear();
         ui->memory->clear();
 
-        isModicate = true;
+        isModicate = true; // флаг измения данных - данные изменены
     }
 }
 
-void MainWindow::on_add_smartphone_clicked()
+void MainWindow::on_add_smartphone_clicked() // добавление смартфона
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка не пустые ли строки для ввода, если пустые - флаг изменяется, строка окрашивается в красный
     if (ui->artikul_smartphone->text().isEmpty()) {
-        ui->artikul_smartphone->setStyleSheet("background-color: red");
+        ui->artikul_smartphone->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_smartphone->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_smartphone->setStyleSheet("background-color: white;"); }
     if (ui->number_smartphone->text().isEmpty()) {
-        ui->number_smartphone->setStyleSheet("background-color: red");
+        ui->number_smartphone->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_smartphone->setStyleSheet("background-color: white");
-    }
+    else { ui->number_smartphone->setStyleSheet("background-color: white;"); }
     if (ui->cost_smartphone->text().isEmpty()) {
-        ui->cost_smartphone->setStyleSheet("background-color: red");
+        ui->cost_smartphone->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_smartphone->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_smartphone->setStyleSheet("background-color: white;"); }
     if (ui->screen_size_sm->text().isEmpty()) {
-        ui->screen_size_sm->setStyleSheet("background-color: red");
+        ui->screen_size_sm->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->screen_size_sm->setStyleSheet("background-color: white");
-    }
+    else { ui->screen_size_sm->setStyleSheet("background-color: white;"); }
     if (ui->hours_working->text().isEmpty()) {
-        ui->hours_working->setStyleSheet("background-color: red");
+        ui->hours_working->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->hours_working->setStyleSheet("background-color: white");
-    }
+    else { ui->hours_working->setStyleSheet("background-color: white;"); }
     if (ui->year_production->text().isEmpty()) {
-        ui->year_production->setStyleSheet("background-color: red");
+        ui->year_production->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->year_production->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
+    else { ui->year_production->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если введенные данные корректны
+        // считывание данных из формы
         QString artikul = ui->artikul_smartphone->text();
         QString number = ui->number_smartphone->text();
         QString cost = ui->cost_smartphone->text();
@@ -394,12 +377,13 @@ void MainWindow::on_add_smartphone_clicked()
         QString screen_size = ui->screen_size_sm->text();
         QString hours_working = ui->hours_working->text();
         QString year = ui->year_production->text();
-        smartphone* new_smartphone = new smartphone(artikul, number, cost, firma, screen_size, hours_working, year);
 
-        current_shop->ware->add_smartphone();
+        product* new_smartphone = new smartphone(artikul, number, cost, firma, screen_size, hours_working, year); // создание нового объекта
         current_shop->ware->add_node(new_smartphone);
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка форм и возвращение в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_smartphone->clear();
         ui->number_smartphone->clear();
@@ -408,61 +392,54 @@ void MainWindow::on_add_smartphone_clicked()
         ui->hours_working->clear();
         ui->year_production->clear();
 
-        isModicate = true;
+        isModicate = true; // установка флага модификации данных
     }
 }
 
 void MainWindow::on_add_tv_clicked()
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка введенных данных - не пустые ли поля, если пустые, они окрашиваются красным
     if (ui->artikul_tv->text().isEmpty()) {
-        ui->artikul_tv->setStyleSheet("background-color: red");
+        ui->artikul_tv->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_tv->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_tv->setStyleSheet("background-color: white;"); }
     if (ui->number_tv->text().isEmpty()) {
-        ui->number_tv->setStyleSheet("background-color: red");
+        ui->number_tv->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_tv->setStyleSheet("background-color: white");
-    }
+    else { ui->number_tv->setStyleSheet("background-color: white;"); }
     if (ui->cost_tv->text().isEmpty()) {
-        ui->cost_tv->setStyleSheet("background-color: red");
+        ui->cost_tv->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_tv->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_tv->setStyleSheet("background-color: white;"); }
     if (ui->screen_size->text().isEmpty()) {
-        ui->screen_size->setStyleSheet("background-color: red");
+        ui->screen_size->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->screen_size->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
+    else { ui->screen_size->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если данные корректны
+        // сичтывание данных из полей
         QString artikul = ui->artikul_tv->text();
         QString number = ui->number_tv->text();
         QString cost = ui->cost_tv->text();
         QString firma = ui->firma_tv->currentText();
         QString screen_size = ui->screen_size->text();
         QString internet;
-        if (ui->internet_connect->isChecked()) {
-            internet = "available";
-        }
-        else {
-            internet = "don't available";
-        }
+        if (ui->internet_connect->isChecked()) { internet = "available"; }
+        else { internet = "don't available"; }
         QString channels = ui->number_chanels->text();
-        tv* new_tv = new tv(artikul, number, cost, firma, screen_size, internet, channels);
 
-        current_shop->ware->add_tv();
-        current_shop->ware->add_node(new_tv);
+        product* new_tv = new tv(artikul, number, cost, firma, screen_size, internet, channels); // создание нового объекта
+        current_shop->ware->add_node(new_tv); // добавление объекта в список
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка формы и возвращение в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_tv->clear();
         ui->number_tv->clear();
@@ -471,30 +448,36 @@ void MainWindow::on_add_tv_clicked()
         ui->internet_connect->clearFocus();
         ui->number_chanels->clear();
 
-        isModicate = true;
+        isModicate = true; // установка флага модификации
     }
 }
 
 
-void MainWindow::on_edit_product_clicked()
+void MainWindow::on_edit_product_clicked() // редактирование данных о продукте
 {
-    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) {
+    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) { // если в магазине нет продуктов, выдается предупреждение
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) {
+        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) { // если не выбрано ни одно поле
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
-        else {
+        else { // если выбран продукт для модификации
+
+            // проверка фокуса на всех таблицах
             int row_notebook = ui->table_notebooks_3->currentRow();
             int row_smartphone = ui->table_smartphones_3->currentRow();
             int row_tv = ui->table_tvs_3->currentRow();
-            int id_product = 0;
-            if (row_notebook != -1) {
-                QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
-                ui->menu->setCurrentIndex(6);
-                id_product = curitem->text().toInt();
-                product* edit_product = current_shop->ware->find_node(id_product);
+
+            int id_product = 0; // для поиска по списку
+            if (row_notebook != -1) { // если редактируется ноутбук
+                QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0); // считывание ячейки, содержащей id
+                ui->menu->setCurrentIndex(6); // открытие формы для редактирования
+                id_product = curitem->text().toInt(); // получение id подукта
+
+                product* edit_product = current_shop->ware->find_node(id_product); // поиск узла с данным id
+
+                // запись в форму текущих данных
                 ui->artikul_notebook_2->setText(edit_product->get_iid());
                 ui->number_notebook_2->setText(edit_product->get_number());
                 ui->cost_notebook_2->setText(edit_product->get_cost());
@@ -503,11 +486,14 @@ void MainWindow::on_edit_product_clicked()
                 ui->rasrad_2->setCurrentText(edit_product->get_second());
                 ui->architecture_2->setCurrentText(edit_product->get_third());
             }
-            if (row_smartphone != -1) {
-                QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
-                ui->menu->setCurrentIndex(7);
-                id_product = curitem->text().toInt();
-                product* edit_product = current_shop->ware->find_node(id_product);
+            if (row_smartphone != -1) { // если редактируется смартфон
+                QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0); // считывание ячейки, содержащей id
+                ui->menu->setCurrentIndex(7); // открытие формы для редактирования
+                id_product = curitem->text().toInt(); // получение id подукта
+
+                product* edit_product = current_shop->ware->find_node(id_product); // поиск узла с данным id
+
+                // запись в форму текущих данных
                 ui->artikul_smartphone_2->setText(edit_product->get_iid());
                 ui->number_smartphone_2->setText(edit_product->get_number());
                 ui->cost_smartphone_2->setText(edit_product->get_cost());
@@ -516,28 +502,28 @@ void MainWindow::on_edit_product_clicked()
                 ui->hours_working_2->setText(edit_product->get_second());
                 ui->year_production_2->setText(edit_product->get_third());
             }
-            if (row_tv != -1) {
-                QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
-                ui->menu->setCurrentIndex(8);
-                id_product = curitem->text().toInt();
-                product* edit_product = current_shop->ware->find_node(id_product);
+            if (row_tv != -1) { // если редактируется телевизор
+                QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0); // считывание ячейки, содержащей id
+                ui->menu->setCurrentIndex(8); // открытие формы для редактирования
+                id_product = curitem->text().toInt(); // получение id подукта
+
+                product* edit_product = current_shop->ware->find_node(id_product); // поиск узла с данным id
+
+                // запись в форму текущих данных
                 ui->artikul_tv_2->setText(edit_product->get_iid());
                 ui->number_tv_2->setText(edit_product->get_number());
                 ui->cost_tv_2->setText(edit_product->get_cost());
                 ui->firma_tv_2->setCurrentText(edit_product->get_firma());
                 ui->screen_size_2->setText(edit_product->get_first());
-                if (edit_product->get_second() == "available") {
-                    ui->internet_connect_2->setChecked(true);
-                }
-                else {
-                    ui->internet_connect_2->setChecked(false);
-                }
+                if (edit_product->get_second() == "available") { ui->internet_connect_2->setChecked(true); }
+                else { ui->internet_connect_2->setChecked(false); }
                 ui->number_chanels_2->setText(edit_product->get_third());
             }
         }
     }
 }
 
+// отмена редактирования продукта - очистка форм и возвращение в главное меню
 void MainWindow::on_cancel_notebook_2_clicked()
 {
     ui->menu->setCurrentIndex(0);
@@ -549,9 +535,7 @@ void MainWindow::on_cancel_notebook_2_clicked()
     ui->number_notebook_2->clear();
     ui->cost_notebook_2->clear();
     ui->memory_2->clear();
-    ui->table_notebooks_3->clearSelection();
 }
-
 void MainWindow::on_cancel_smartphone_2_clicked()
 {
      ui->menu->setCurrentIndex(0);
@@ -565,9 +549,7 @@ void MainWindow::on_cancel_smartphone_2_clicked()
      ui->screen_size_sm_2->clear();
      ui->hours_working_2->clear();
      ui->year_production_2->clear();
-     ui->table_smartphones_3->clearSelection();
 }
-
 void MainWindow::on_cancel_tv_2_clicked()
 {
      ui->menu->setCurrentIndex(0);
@@ -581,45 +563,41 @@ void MainWindow::on_cancel_tv_2_clicked()
      ui->screen_size_2->clear();
      ui->internet_connect_2->clearFocus();
      ui->number_chanels_2->clear();
-     ui->table_tvs_3->clearSelection();
 }
 
-void MainWindow::on_change_notebook_clicked()
+
+void MainWindow::on_change_notebook_clicked() // изменение данных ноутбука - отправка данных
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка данных, если пустые поля - окршиваются в красный
     if (ui->artikul_notebook_2->text().isEmpty()) {
-        ui->artikul_notebook_2->setStyleSheet("background-color: red");
+        ui->artikul_notebook_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_notebook_2->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_notebook_2->setStyleSheet("background-color: white;"); }
     if (ui->number_notebook_2->text().isEmpty()) {
-        ui->number_notebook_2->setStyleSheet("background-color: red");
+        ui->number_notebook_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_notebook_2->setStyleSheet("background-color: white");
-    }
+    else { ui->number_notebook_2->setStyleSheet("background-color: white;"); }
     if (ui->cost_notebook_2->text().isEmpty()) {
-        ui->cost_notebook_2->setStyleSheet("background-color: red");
+        ui->cost_notebook_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_notebook_2->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_notebook_2->setStyleSheet("background-color: white;"); }
     if (ui->memory_2->text().isEmpty()) {
-        ui->memory_2->setStyleSheet("background-color: red");
+        ui->memory_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->memory_2->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
-        int row_notebook = ui->table_notebooks_3->currentRow();
-        QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
+    else { ui->memory_2->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если данные корректны
+        int row_notebook = ui->table_notebooks_3->currentRow(); // считывание фокуса
+        QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0); // читаем id из ячейки
         int id_product = curitem->text().toInt();
 
+        // считывание данных из формы
         QString artikul = ui->artikul_notebook_2->text();
         QString number = ui->number_notebook_2->text();
         QString cost = ui->cost_notebook_2->text();
@@ -628,74 +606,69 @@ void MainWindow::on_change_notebook_clicked()
         QString rasrad = ui->rasrad_2->currentText();
         QString architecture = ui->architecture_2->currentText();
 
-        product* edit_notebook = current_shop->ware->find_node(id_product);
-        edit_notebook->set_data_product(artikul, number, cost, firma, memory_size, rasrad, architecture);
+        product* edit_notebook = current_shop->ware->find_node(id_product); // поиск ноутбука с таким id
+        edit_notebook->set_data_product(artikul, number, cost, firma, memory_size, rasrad, architecture); // изменение данных
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка формы и переход в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_notebook_2->clear();
         ui->number_notebook_2->clear();
         ui->cost_notebook_2->clear();
         ui->memory_2->clear();
 
+        // снятие фокуса с таблиц
         ui->table_notebooks_3->clearSelection();
         ui->table_smartphones_3->clearSelection();
         ui->table_tvs_3->clearSelection();
 
-        isModicate = true;
+        isModicate = true; // установка флага модификации данных
     }
 }
 
 void MainWindow::on_change_smartphone_clicked()
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка данных, если пустые поля - окршиваются в красный
     if (ui->artikul_smartphone_2->text().isEmpty()) {
-        ui->artikul_smartphone_2->setStyleSheet("background-color: red");
+        ui->artikul_smartphone_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_smartphone_2->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_smartphone_2->setStyleSheet("background-color: white;"); }
     if (ui->number_smartphone_2->text().isEmpty()) {
-        ui->number_smartphone_2->setStyleSheet("background-color: red");
+        ui->number_smartphone_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_smartphone_2->setStyleSheet("background-color: white");
-    }
+    else { ui->number_smartphone_2->setStyleSheet("background-color: white;"); }
     if (ui->cost_smartphone_2->text().isEmpty()) {
-        ui->cost_smartphone_2->setStyleSheet("background-color: red");
+        ui->cost_smartphone_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_smartphone_2->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_smartphone_2->setStyleSheet("background-color: white;"); }
     if (ui->screen_size_sm_2->text().isEmpty()) {
-        ui->screen_size_sm_2->setStyleSheet("background-color: red");
+        ui->screen_size_sm_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->screen_size_sm_2->setStyleSheet("background-color: white");
-    }
+    else { ui->screen_size_sm_2->setStyleSheet("background-color: white;"); }
     if (ui->hours_working_2->text().isEmpty()) {
-        ui->hours_working_2->setStyleSheet("background-color: red");
+        ui->hours_working_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->hours_working_2->setStyleSheet("background-color: white");
-    }
+    else { ui->hours_working_2->setStyleSheet("background-color: white;"); }
     if (ui->year_production_2->text().isEmpty()) {
-        ui->year_production_2->setStyleSheet("background-color: red");
+        ui->year_production_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->year_production->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
-        int row_smartphone = ui->table_smartphones_3->currentRow();
-        QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
+    else { ui->year_production->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если данные корректны
+        int row_smartphone = ui->table_smartphones_3->currentRow(); // считывание фокуса
+        QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0); // читаем id из ячейки
         int id_product = curitem->text().toInt();
 
+        // считывание данных из формы
         QString artikul = ui->artikul_smartphone_2->text();
         QString number = ui->number_smartphone_2->text();
         QString cost = ui->cost_smartphone_2->text();
@@ -704,10 +677,12 @@ void MainWindow::on_change_smartphone_clicked()
         QString hours_working = ui->hours_working_2->text();
         QString year = ui->year_production_2->text();
 
-        product* new_smartphone = current_shop->ware->find_node(id_product);
-        new_smartphone->set_data_product(artikul, number, cost, firma, screen_size, hours_working, year);
+        product* new_smartphone = current_shop->ware->find_node(id_product); // поиск смартфона с таким id
+        new_smartphone->set_data_product(artikul, number, cost, firma, screen_size, hours_working, year); // изменение данных
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка формы и переход в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_smartphone_2->clear();
         ui->number_smartphone_2->clear();
@@ -716,68 +691,63 @@ void MainWindow::on_change_smartphone_clicked()
         ui->hours_working_2->clear();
         ui->year_production_2->clear();
 
+        // снятие фокуса с таблиц
         ui->table_notebooks_3->clearSelection();
         ui->table_smartphones_3->clearSelection();
         ui->table_tvs_3->clearSelection();
 
-        isModicate = true;
+        isModicate = true; // установка флага модификации данных
     }
 }
 
 void MainWindow::on_change_tv_clicked()
 {
-    bool correct_data = true;
+    bool correct_data = true;// флаг корректности данных
+
+    // проверка данных, если пустые поля - окршиваются в красный
     if (ui->artikul_tv_2->text().isEmpty()) {
-        ui->artikul_tv_2->setStyleSheet("background-color: red");
+        ui->artikul_tv_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->artikul_tv_2->setStyleSheet("background-color: white");
-    }
+    else { ui->artikul_tv_2->setStyleSheet("background-color: white;"); }
     if (ui->number_tv_2->text().isEmpty()) {
-        ui->number_tv_2->setStyleSheet("background-color: red");
+        ui->number_tv_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->number_tv_2->setStyleSheet("background-color: white");
-    }
+    else { ui->number_tv_2->setStyleSheet("background-color: white;"); }
     if (ui->cost_tv_2->text().isEmpty()) {
-        ui->cost_tv_2->setStyleSheet("background-color: red");
+        ui->cost_tv_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->cost_tv_2->setStyleSheet("background-color: white");
-    }
+    else { ui->cost_tv_2->setStyleSheet("background-color: white;"); }
     if (ui->screen_size_2->text().isEmpty()) {
-        ui->screen_size_2->setStyleSheet("background-color: red");
+        ui->screen_size_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->screen_size_2->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
-        int row_tv = ui->table_tvs_3->currentRow();
-        QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
+    else { ui->screen_size_2->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если данные корректны
+        int row_tv = ui->table_tvs_3->currentRow(); // считывание фокуса
+        QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0); // читаем id из ячейки
         int id_product = curitem->text().toInt();
 
+        // считывание данных из формы
         QString artikul = ui->artikul_tv_2->text();
         QString number = ui->number_tv_2->text();
         QString cost = ui->cost_tv_2->text();
         QString firma = ui->firma_tv_2->currentText();
         QString screen_size = ui->screen_size_2->text();
         QString internet;
-        if (ui->internet_connect_2->isChecked()) {
-            internet = "available";
-        }
-        else {
-            internet = "don't available";
-        }
+        if (ui->internet_connect_2->isChecked()) { internet = "available"; }
+        else { internet = "don't available"; }
         QString channels = ui->number_chanels_2->text();
 
-        product* new_tv = current_shop->ware->find_node(id_product);
-        new_tv->set_data_product(artikul, number, cost, firma, screen_size, internet, channels);
+        product* new_tv = current_shop->ware->find_node(id_product); // поиск телевизора с таким id
+        new_tv->set_data_product(artikul, number, cost, firma, screen_size, internet, channels); // изменение данных
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
+
+        // очистка формы и переход в главное меню
         ui->menu->setCurrentIndex(0);
         ui->artikul_tv_2->clear();
         ui->number_tv_2->clear();
@@ -786,55 +756,58 @@ void MainWindow::on_change_tv_clicked()
         ui->internet_connect_2->clearFocus();
         ui->number_chanels_2->clear();
 
+        // снятие фокуса с таблиц
         ui->table_notebooks_3->clearSelection();
         ui->table_smartphones_3->clearSelection();
         ui->table_tvs_3->clearSelection();
 
-        isModicate = true;
+        isModicate = true; // установка флага модификации данных
     }
 }
 
-void MainWindow::on_cancel_clicked()
-{
-    ui->menu->setCurrentIndex(0);
-}
+void MainWindow::on_cancel_clicked() { ui->menu->setCurrentIndex(0); } // переход обратнов главное меню
 
+// удаление продуктов
 void MainWindow::on_delete_product_clicked()
 {
-    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) {
+    if (ui->table_notebooks_3->rowCount() == 0 && ui->table_smartphones_3->rowCount() == 0 && ui->table_tvs_3->rowCount() == 0) { // таблица пустая
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) {
+        if (ui->table_notebooks_3->currentRow() == -1 && ui->table_smartphones_3->currentRow() == -1 && ui->table_tvs_3->currentRow() == -1) { // ни один продукт не выбран
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
         else {
+            // считывание фокусов
             int row_notebook = ui->table_notebooks_3->currentRow();
             int row_smartphone = ui->table_smartphones_3->currentRow();
             int row_tv = ui->table_tvs_3->currentRow();
+
             int id_product = 0;
-            if (row_notebook != -1) {
+            if (row_notebook != -1) { // если фокус на таблице ноутбуков
                 QTableWidgetItem *curitem = ui->table_notebooks_3->item(row_notebook, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
-            if (row_smartphone != -1) {
+            if (row_smartphone != -1) { // если фокус на таблице смартфонов
                 QTableWidgetItem *curitem = ui->table_smartphones_3->item(row_smartphone, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
-            if (row_tv != -1) {
+            if (row_tv != -1) { // если фокус на таблице телевизоров
                 QTableWidgetItem *curitem = ui->table_tvs_3->item(row_tv, 0);
                 id_product = curitem->text().toInt();
                 current_shop->ware->delete_node(id_product);
             }
         }
+
+        // очистка фокусов и переход в главное меню
         ui->menu->setCurrentIndex(0);
         ui->table_notebooks_3->clearSelection();
         ui->table_smartphones_3->clearSelection();
         ui->table_tvs_3->clearSelection();
 
-        update_table();
+        update_table(); // обновление таблицы продуктов
     }
 }
 
@@ -845,156 +818,153 @@ void MainWindow::on_change_shop_clicked()
 
 }
 
-void MainWindow::on_stay_shop_clicked()
-{
-    ui->menu->setCurrentIndex(0);
-}
+void MainWindow::on_stay_shop_clicked() { ui->menu->setCurrentIndex(0); } // отмена изменения текущего магазина
 
-void MainWindow::on_cancel_new_shop_clicked()
-{
-    ui->menu->setCurrentIndex(0);
-}
+void MainWindow::on_cancel_new_shop_clicked() { ui->menu->setCurrentIndex(0); } // отмена добавления нового магазина
 
-void MainWindow::on_add_shop_clicked()
-{
-    ui->menu->setCurrentIndex(10);
-}
+void MainWindow::on_add_shop_clicked() { ui->menu->setCurrentIndex(10); } // добавление нового магазина - открытие формы
 
-void MainWindow::on_add_new_shop_clicked()
+void MainWindow::on_add_new_shop_clicked() // добавление нового магазина - отправка данных из формы
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка корректности данных, нет ли пустых полей
     if (ui->name_shop->text().isEmpty()) {
-        ui->name_shop->setStyleSheet("background-color: red");
+        ui->name_shop->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->name_shop->setStyleSheet("background-color: white");
-    }
+    else { ui->name_shop->setStyleSheet("background-color: white;"); }
     if (ui->phone_shop->text().isEmpty()) {
-        ui->phone_shop->setStyleSheet("background-color: red");
+        ui->phone_shop->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->phone_shop->setStyleSheet("background-color: white");
-    }
+    else { ui->phone_shop->setStyleSheet("background-color: white;"); }
     if (ui->adress_shop->text().isEmpty()) {
-        ui->adress_shop->setStyleSheet("background-color: red");
+        ui->adress_shop->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->adress_shop->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
+    else { ui->adress_shop->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если введенные данные корректны
+        // считывание данных из полей
         QString name = ui->name_shop->text();
         QString phone = ui->phone_shop->text();
         QString adress = ui->adress_shop->text();
-        current_shop_artikul++;
-        shop* new_shop = new shop(name, adress, phone, nullptr, current_shop_artikul);
 
-        shops->add_node(new_shop);
-        current_shop = new_shop;
-        update_table();
-        update_table_shops();
+        current_shop_artikul++; //новый артикул следующего магазина
+        shop* new_shop = new shop(name, adress, phone, nullptr, current_shop_artikul); // создание нового магазина
+        shops->add_node(new_shop); // добавление нового магазина в список
+        current_shop = new_shop; // новый магазин становится текущим
+
+        update_table(); // обновление таблицы продуктов - пустая, т.к. магазин новый
+        update_table_shops(); // обновление таблицы магазинов
+
+        // очистка формы и переход в главное меню
         ui->menu->setCurrentIndex(0);
-
         ui->name_shop->clear();
         ui->phone_shop->clear();
         ui->adress_shop->clear();
 
-        isModicate = true;
+        isModicate = true; // флаг модификации данных
     }
 }
 
-void MainWindow::on_choose_new_shop_2_clicked()
+void MainWindow::on_choose_new_shop_2_clicked() // изменение текущего магазина
 {
-    if (ui->table_shops->rowCount() == 0) {
+    if (ui->table_shops->rowCount() == 0) { // таблица пустая
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_shops->currentRow() == -1) {
+        if (ui->table_shops->currentRow() == -1) { // ни один магазин не выбран
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
         else {
-            int row_shop = ui->table_shops->currentRow();
-            QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
+            int row_shop = ui->table_shops->currentRow(); // считывание фокуса
+            QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0); // считывание артикула магазина для поиска
             int id_shop = curitem->text().toInt();
-            current_shop = shops->find_node(id_shop);
-            update_table();
-            ui->menu->setCurrentIndex(0);
+
+            current_shop = shops->find_node(id_shop); // поиск магазина с таким артикулом
+            current_shop_artikul = current_shop->get_artikul();
+
+            update_table(); // обновление таблицы продуктов
+            ui->menu->setCurrentIndex(0); // возвращение в главное меню
         }
     }
 }
 
-void MainWindow::on_delete_shop_clicked()
+void MainWindow::on_delete_shop_clicked() // удаление магазина
 {
-    if (ui->table_shops->rowCount() == 0) {
+    if (ui->table_shops->rowCount() == 0) { // таблица пустая
         QMessageBox::critical(this, "Error", "Table is empty!");
     }
     else {
-        if (ui->table_shops->currentRow() == -1) {
+        if (ui->table_shops->currentRow() == -1) { // ни один магазин не выбран
             QMessageBox::critical(this, "Error", "No line is selected!");
         }
         else {
-            int row_shop = ui->table_shops->currentRow();
-            QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
+            int row_shop = ui->table_shops->currentRow(); // считывание фокуса
+            QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0); // считывание артикула магазина для поиска
             int id_shop = curitem->text().toInt();
-            shops->delete_node(id_shop);
-            update_table();
-            update_table_shops();
-            ui->menu->setCurrentIndex(0);
 
-            isModicate = true;
+            shops->delete_node(id_shop); // удаление магазина с таким артикулом
+
+            update_table(); // обновление таблицы продуктов
+            update_table_shops(); // обновление таблицы магазинов
+
+            ui->menu->setCurrentIndex(0); // возвращение в главное меню
+
+            isModicate = true; // флаг модификации данных
         }
     }
 }
 
-void MainWindow::new_file() {
-    if (isModicate == true) {
+void MainWindow::new_file() { // создание нового файла
+    if (isModicate == true) { // если данные были изменены
         QMessageBox msgBox;
         msgBox.setText("Save changes?");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::Yes);
         int res = msgBox.exec();
-        if(res == QMessageBox::Yes) {
-            save_file();
-        }
+        if(res == QMessageBox::Yes) { save_file(); } // сохранение изменений перед создание нового файла
     }
+
+    // создание новой сети магазинов содним магазином по умолчанию
     shops->clear_list();
     current_shop->ware->clear_list();
     shops->add_node(current_shop);
-    update_table();
-    update_table_shops();
-    isModicate = false;
+
+    update_table(); // обновление таблицы продуктов
+    update_table_shops(); // обновление таблицы магазинов
+
+    isModicate = false; // сбрасываем флаг модификации данных - файл пустой
 }
 
-void MainWindow::save_file() {
+void MainWindow::save_file() { // сохранение файла
     QFile file;
 
-    if(current_file == "")
-    {
-        save_as();
-    }
+    if(current_file == "") { save_as(); } // если никакой файл не открыт, то просим пользователя создать
     else
     {
         file.setFileName(current_file);
         file.open(QIODevice::WriteOnly | QIODevice::Text);
-        write_in_file(file);
+
+        write_in_file(file); // запись в файл
         isModicate = false;
         file.close();
     }
 }
 
-void MainWindow::write_in_file(QFile &file) {
+void MainWindow::write_in_file(QFile &file) { // хапись в файл
     QTextStream stream(&file);
     stream.setCodec("UTF-8");
 
-    stream << shops->get_count_all_shops() << endl;
+    stream << shops->get_count_all_shops() << endl; // запись количества магазинов
     shop* write_current_shop = shops->get_head();
-    while (write_current_shop != nullptr) {
+    while (write_current_shop != nullptr) { // цикл по магазинам
         list_product* write_current_products = write_current_shop->get_ware();
-        stream << write_current_products->get_count() << endl;
+        stream << write_current_products->get_count() << endl; // запись количества продуктов магазина
         product* write_current_product = write_current_products->get_head();
-        while (write_current_product != nullptr) {
+        while (write_current_product != nullptr) { // цикл по продуктам магазина
             stream << write_current_product->get_category() << endl;
             stream << write_current_product->get_iid() << endl;
             stream << write_current_product->get_number() << endl;
@@ -1003,13 +973,13 @@ void MainWindow::write_in_file(QFile &file) {
             stream << write_current_product->get_first() << endl;
             stream << write_current_product->get_second() << endl;
             stream << write_current_product->get_third() << endl;
-            write_current_product = write_current_product->next;
+            write_current_product = write_current_product->next; // следующий продукт
         }
-        write_current_shop = write_current_shop->get_next();
+        write_current_shop = write_current_shop->get_next(); // следующий магазин
     }
 }
 
-void MainWindow::save_as() {
+void MainWindow::save_as() { // сохранение под новым именем
     QFile file;
 
     QString fileName = QFileDialog::getSaveFileName(this, "Save as ...", QDir::homePath(), "Text file (*.txt)");
@@ -1018,13 +988,14 @@ void MainWindow::save_as() {
         current_file = fileName;
         file.setFileName(fileName);
         file.open(QIODevice::WriteOnly | QIODevice::Text);
-        write_in_file(file);
+
+        write_in_file(file); // запись в файл
         isModicate = false;
         file.close();
     }
 }
 
-void MainWindow::exit_prog() {
+void MainWindow::exit_prog() { // закрытие программы
     if (isModicate == true) {
         QMessageBox msgBox;
         msgBox.setText("Save changes?");
@@ -1032,42 +1003,38 @@ void MainWindow::exit_prog() {
         msgBox.setDefaultButton(QMessageBox::Yes);
         int res = msgBox.exec();
 
-        if(res == QMessageBox::Yes)
-        {
-            save_file();
-        }
+        if(res == QMessageBox::Yes) { save_file(); } // сохранение изменений перед закрытием
     }
 
     close();
 }
 
-void MainWindow::about_program() {
+void MainWindow::about_program() { // о программе
     QMessageBox msgBox;
     msgBox.setWindowTitle("About");
     msgBox.setText("The program by Svetlana Rudneva\nAll roots reserved");
     msgBox.exec();
 }
 
-void MainWindow::help() {
+void MainWindow::help() { // справка
     QMessageBox msgBox;
     msgBox.setWindowTitle("How use this app");
     msgBox.setText("This program is very easy in using!\nYou will get success!\nWe belive that you will enjoy!");
     msgBox.exec();
 }
 
-void MainWindow::open_file() {
-    if (isModicate == true) {
+void MainWindow::open_file() { // открытие файла
+    if (isModicate == true) { // если текущий файл был изменен
         QMessageBox msgBox;
         msgBox.setText("Save changes?");
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::Yes);
         int res = msgBox.exec();
 
-        if(res == QMessageBox::Yes)
-        {
-            save_file();
-        }
+        if(res == QMessageBox::Yes) { save_file(); } // сохранение изменений перед открытием
     }
+
+    // очистка списков и таблиц
     shops->clear_list();
     current_shop->ware->clear_list();
     update_table();
@@ -1078,7 +1045,7 @@ void MainWindow::open_file() {
 
     qDebug() << "";
 
-    if(!fileName.isEmpty())
+    if(!fileName.isEmpty()) // если файл не пустой
     {
         current_file = fileName;
 
@@ -1088,24 +1055,26 @@ void MainWindow::open_file() {
         QTextStream stream(&file);
         stream.setCodec("UTF-8");
 
-        int count_shops = (stream.readLine()).toInt();
+        int count_shops = (stream.readLine()).toInt(); // считываем количество магазинов
 
         for(int i = 0; i < count_shops; i++) {
-            int count_products = (stream.readLine()).toInt();
-            shop* current = new shop();
+            int count_products = (stream.readLine()).toInt(); // считываем количество продуктов в конкретном магазине
+            shop* current = new shop(); // создание магазина
+
             for (int j = 0; j < count_products; j++) {
+                // считывание данных
                 QString category = stream.readLine();
                 QString iid = stream.readLine();
                 QString number = stream.readLine();
                 QString cost = stream.readLine();
                 QString firma = stream.readLine();
+                // создание узлов и добавление их в список
                 if (category == "Notebook") {
                     QString memory_size = stream.readLine();
                     QString rasrad = stream.readLine();
                     QString architecture = stream.readLine();
                     product* new_product = new notebook(iid, number, cost, firma, memory_size, rasrad, architecture);
                     current->ware->add_node(new_product);
-                    current->ware->add_notebook();
                 }
                 if (category == "Smartphone") {
                     QString screen_size = stream.readLine();
@@ -1113,7 +1082,6 @@ void MainWindow::open_file() {
                     QString year_production = stream.readLine();
                     product* new_product = new smartphone(iid, number, cost, firma, screen_size, hours_working, year_production);
                     current->ware->add_node(new_product);
-                    current->ware->add_smartphone();
                 }
                 if (category == "TV") {
                     QString screen_size = stream.readLine();
@@ -1121,102 +1089,92 @@ void MainWindow::open_file() {
                     QString number_channels = stream.readLine();
                     product* new_product = new tv(iid, number, cost, firma, screen_size, internet_connect, number_channels);
                     current->ware->add_node(new_product);
-                    current->ware->add_tv();
                 }
             }
-            shops->add_node(current);
-            current_shop = current;
+            shops->add_node(current); // добавление магазина в список
+            current_shop = current; // изменение текушего магазина
         }
 
-        file.close();
-
-        update_table();
-        update_table_shops();
-        isModicate = false;
+        update_table(); // обновление таблицы продуктов
+        update_table_shops(); // обновление таблицы магазинов
+        isModicate = false; // данные еще не изменялись
+        file.close(); // закрытие файла
     }
 }
 
-void MainWindow::on_cancel_new_shop_2_clicked()
-{
-    ui->menu->setCurrentIndex(0);
-}
+void MainWindow::on_cancel_new_shop_2_clicked() { ui->menu->setCurrentIndex(0); } // отмена добавления нового магазина
 
 
-void MainWindow::on_edit_shop_done_clicked()
+void MainWindow::on_edit_shop_done_clicked() //  изменение данных магазина - отправка формы
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка полей
     if (ui->name_shop_2->text().isEmpty()) {
-        ui->name_shop_2->setStyleSheet("background-color: red");
+        ui->name_shop_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->name_shop_2->setStyleSheet("background-color: white");
-    }
+    else { ui->name_shop_2->setStyleSheet("background-color: white;"); }
     if (ui->phone_shop_2->text().isEmpty()) {
-        ui->phone_shop_2->setStyleSheet("background-color: red");
+        ui->phone_shop_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->phone_shop_2->setStyleSheet("background-color: white");
-    }
+    else { ui->phone_shop_2->setStyleSheet("background-color: white;"); }
     if (ui->adress_shop_2->text().isEmpty()) {
-        ui->adress_shop_2->setStyleSheet("background-color: red");
+        ui->adress_shop_2->setStyleSheet("background-color: red;");
         correct_data = false;
     }
-    else {
-        ui->adress_shop_2->setStyleSheet("background-color: white");
-    }
-    if (correct_data == true) {
+    else { ui->adress_shop_2->setStyleSheet("background-color: white;"); }
+
+    if (correct_data == true) { // если введенные данные корректы
+        // считывание данных из полей
         QString name = ui->name_shop_2->text();
         QString phone = ui->phone_shop_2->text();
         QString adress = ui->adress_shop_2->text();
 
-        int row_shop = ui->table_shops->currentRow();
-        QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
+        int row_shop = ui->table_shops->currentRow(); // считывание фокуса
+        QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0); // считывание артикула
         int id_shop = curitem->text().toInt();
 
-        shop* edit_shop = shops->find_node(id_shop);
-        edit_shop->set_data_shop(name, adress, phone);
-        if (current_shop_artikul == edit_shop->get_artikul()) {
-            current_shop = edit_shop;
-        }
+        shop* edit_shop = shops->find_node(id_shop); // поиск изменяемого магазина
+        edit_shop->set_data_shop(name, adress, phone); // установка новых значений
+        if (current_shop_artikul == edit_shop->get_artikul()) { current_shop = edit_shop; } // если текущий артикул совпадает с артикулом изменяемого магазина
 
-        update_table_shops();
+        update_table_shops(); // обновление таблицы магазинов
+
+        // очистка формыти переход в главное меню
         ui->menu->setCurrentIndex(0);
-
         ui->name_shop_2->clear();
         ui->phone_shop_2->clear();
         ui->adress_shop_2->clear();
 
-        isModicate = true;
+        isModicate = true; // данные изменены
     }
 }
 
-void MainWindow::on_edit_shop_data_clicked()
+void MainWindow::on_edit_shop_data_clicked() // изменение данных магазина
 {
-    ui->menu->setCurrentIndex(11);
-    int row_shop = ui->table_shops->currentRow();
+    ui->menu->setCurrentIndex(11); // открчытие формы
+    int row_shop = ui->table_shops->currentRow(); // считывание фокуса
     QTableWidgetItem *curitem = ui->table_shops->item(row_shop, 0);
     int id_shop = curitem->text().toInt();
-    shop* edit_shop = shops->find_node(id_shop);
+    shop* edit_shop = shops->find_node(id_shop); // поиск магазина
 
+    // запись в форму текущих данных
     ui->name_shop_2->setText(edit_shop->get_name_shop());
     ui->phone_shop_2->setText(edit_shop->get_phone());
     ui->adress_shop_2->setText(edit_shop->get_adress());
 }
 
-void MainWindow::on_search_product_clicked()
-{
-    ui->menu->setCurrentIndex(1);
-}
+void MainWindow::on_search_product_clicked() { ui->menu->setCurrentIndex(1); } // поиск продуктов
 
-void MainWindow::on_cancel_search_clicked()
+void MainWindow::on_cancel_search_clicked() // отмена поиска - переход в главное меню
 {
     ui->menu->setCurrentIndex(0);
     ui->tables->setCurrentIndex(0);
 }
 
-void MainWindow::on_search_by_cost_clicked()
+void MainWindow::on_search_by_cost_clicked() // поиск по стоимости - открытие формы поиска
 {
     ui->menu->setCurrentIndex(12);
     ui->min_cost->setText("0");
@@ -1224,41 +1182,43 @@ void MainWindow::on_search_by_cost_clicked()
     ui->tables->setCurrentIndex(1);
 }
 
-void MainWindow::on_search_cost_product_clicked()
+void MainWindow::on_search_cost_product_clicked() // поиск по стоимости - отправка данных
 {
-    bool correct_data = true;
+    bool correct_data = true; // флаг корректности данных
+
+    // проверка корректности данных
     if (ui->min_cost->text().isEmpty()) {
         correct_data = false;
-        ui->min_cost->setStyleSheet("background-color: red");
+        ui->min_cost->setStyleSheet("background-color: red;");
     }
-    else {
-        ui->min_cost->setStyleSheet("background-color: white");
+    else { ui->min_cost->setStyleSheet("background-color: white;");
     }
     if (ui->max_cost->text().isEmpty()) {
         correct_data = false;
-        ui->max_cost->setStyleSheet("background-color: red");
+        ui->max_cost->setStyleSheet("background-color: red;");
     }
-    else {
-        ui->max_cost->setStyleSheet("background-color: white");
-    }
-    if ((ui->min_cost->text()).toFloat() > (ui->max_cost->text()).toFloat()) {
+    else { ui->max_cost->setStyleSheet("background-color: white;"); }
+    if ((ui->min_cost->text()).toFloat() > (ui->max_cost->text()).toFloat()) { // минимальная стоимость должна не превышать максимальную
         correct_data = false;
-        ui->min_cost->setStyleSheet("background-color: red");
-        ui->max_cost->setStyleSheet("background-color: red");
+        ui->min_cost->setStyleSheet("background-color: red;");
+        ui->max_cost->setStyleSheet("background-color: red;");
         QMessageBox::critical(this, "Error", "You entered wrong cost characteristics!");
     }
     else {
-        ui->min_cost->setStyleSheet("background-color: white");
-        ui->max_cost->setStyleSheet("background-color: white");
+        ui->min_cost->setStyleSheet("background-color: white;");
+        ui->max_cost->setStyleSheet("background-color: white;");
     }
-    if (correct_data == true) {
+
+    if (correct_data == true) { // если данные корректны
+        // считывание данных из полей
         float minimum = (ui->min_cost->text()).toFloat();
         float maximum = (ui->max_cost->text()).toFloat();
         QString type = ui->type_product->currentText();
         bool all_shops_search = ui->where_search->isChecked();
-        int count_results = 0;
-        if (type == "Notebook" || type == "Smartphone" || type == "TV") {
-            QStringList Title_product;
+
+        int count_results = 0; // количество продуктов, соответствующих критериям поиска
+        if (type == "Notebook" || type == "Smartphone" || type == "TV") { // если выбран кокретный тип продукта
+            QStringList Title_product; // заголовок таблицы результатов
             if (type == "Notebook") {
                 Title_product << "ID"
                               << "Artikul"
@@ -1289,19 +1249,23 @@ void MainWindow::on_search_cost_product_clicked()
                          << "Internet connect"
                          << "Number channels";
             }
+
             ui->search_table->setHorizontalHeaderLabels(Title_product);
-            if (all_shops_search == true) {
+
+            if (all_shops_search == true) { // если выбран критерий поиска по всем магазинам сети
                 shop* search_shop = shops->get_head();
                 QTableWidgetItem *item;
-                int i = 0;
-                count_results = 0;
-                while (search_shop != nullptr) {
+                int i = 0; // для заполнения таблицы - счетчик строк
+                count_results = 0; // количество результатов
+                while (search_shop != nullptr) { // цикл по магазинам
                     list_product* search_products = search_shop->get_ware();
                     product* current_search = search_products->head;
-                    while (current_search != nullptr) {
-                        if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) {
+                    while (current_search != nullptr) { // цикл по продуктам магазина
+                        if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) { // критерия подходящих продуктов
                             count_results++;
-                            ui->search_table->setRowCount(count_results);
+                            ui->search_table->setRowCount(count_results); // добавление строк
+
+                            // заполнение таблицы
                             item = new QTableWidgetItem(QString::number(current_search->get_current()));
                             ui->search_table->setItem(i, 0, item);
                             item = new QTableWidgetItem(current_search->get_iid());
@@ -1318,24 +1282,27 @@ void MainWindow::on_search_cost_product_clicked()
                             ui->search_table->setItem(i, 6, item);
                             item = new QTableWidgetItem(current_search->get_third());
                             ui->search_table->setItem(i, 7, item);
+
                             i++;
                         }
                         current_search = current_search->next;
                     }
                     search_shop = search_shop->get_next();
                 }
-                ui->number_res_search->setText(QString::number(count_results));
+                ui->number_res_search->setText(QString::number(count_results)); // отображение количества найденных продуктов
             }
-            else {
-                list_product* search_products = current_shop->get_ware();
+            else { // поиск только в текущем магазине
+                list_product* search_products = current_shop->get_ware(); // список продуктов текущего магазина
                 product* current_search = search_products->head;
                 QTableWidgetItem *item;
                 int i = 0;
                 count_results = 0;
-                while (current_search != nullptr) {
-                    if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) {
+                while (current_search != nullptr) { // цикл по списку продуктов текущего магазина
+                    if (minimum <= (current_search->get_cost()).toFloat() <= maximum && (current_search->get_category() == type)) { // проверка критериев поиска
                         count_results++;
-                        ui->search_table->setRowCount(count_results);
+                        ui->search_table->setRowCount(count_results); // добавление строк
+
+                        // заполнение таблицы
                         item = new QTableWidgetItem(QString::number(current_search->get_current()));
                         ui->search_table->setItem(i, 0, item);
                         item = new QTableWidgetItem(current_search->get_iid());
@@ -1352,15 +1319,16 @@ void MainWindow::on_search_cost_product_clicked()
                         ui->search_table->setItem(i, 6, item);
                         item = new QTableWidgetItem(current_search->get_third());
                         ui->search_table->setItem(i, 7, item);
+
                         i++;
                     }
                     current_search = current_search->next;
                 }
-            ui->number_res_search->setText(QString::number(count_results));
+            ui->number_res_search->setText(QString::number(count_results)); // отображение количества найденных продуктов
             }
         }
-        else {
-            QStringList Title;
+        else { // поиск среди продуктов всех типов
+            QStringList Title; // заголовок таблицы результатов
             Title << "ID"
                   << "Type"
                   << "Artikul"
@@ -1370,18 +1338,23 @@ void MainWindow::on_search_cost_product_clicked()
                   << "Optional";
             ui->search_table->setColumnCount(7);
             ui->search_table->setHorizontalHeaderLabels(Title);
-            if (all_shops_search == true) {
+
+            if (all_shops_search == true) { // поиск по всем магазинам сети
                 shop* search_shop = shops->get_head();
                 QTableWidgetItem *item;
-                int i = 0;
-                count_results = 0;
-                while (search_shop != nullptr) {
+                int i = 0; // счетчик строк для заполнения таблицы
+                count_results = 0; // количество найденных продуктов
+
+                while (search_shop != nullptr) { // цикл по магазинам
                     list_product* search_products = search_shop->get_ware();
                     product* current_search = search_products->head;
-                    while (current_search != nullptr) {
+
+                    while (current_search != nullptr) { // цикл по списку продуктов магазина
                         if (minimum <= (current_search->get_cost()).toFloat() <= maximum) {
                             count_results++;
                             ui->search_table->setRowCount(count_results);
+
+                            // заполнение таблицы
                             item = new QTableWidgetItem(QString::number(current_search->get_current()));
                             ui->search_table->setItem(i, 0, item);
                             item = new QTableWidgetItem(current_search->get_category());
@@ -1396,23 +1369,27 @@ void MainWindow::on_search_cost_product_clicked()
                             ui->search_table->setItem(i, 5, item);
                             item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
                             ui->search_table->setItem(i, 6, item);
+
                             i++;
                         }
                         current_search = current_search->next;
                     }
                     search_shop = search_shop->get_next();
                 }
-                ui->number_res_search->setText(QString::number(count_results));
+                ui->number_res_search->setText(QString::number(count_results)); // отображение количества найденных продуктов
             }
-            else {
-                list_product* search_products = current_shop->get_ware();
+            else { // поиск по текущему магазину
+                list_product* search_products = current_shop->get_ware(); // список продуктов магазина
                 product* current_search = search_products->head;
                 QTableWidgetItem *item;
                 int i = 0;
                 count_results = 0;
-                while (current_search != nullptr) {
+
+                while (current_search != nullptr) { // цикл по продуктам магазина
                     if (minimum <= (current_search->get_cost()).toFloat() <= maximum) {
                         count_results++;
+
+                        // заполнение таблицы
                         ui->search_table->setRowCount(count_results);
                         item = new QTableWidgetItem(QString::number(current_search->get_current()));
                         ui->search_table->setItem(i, 0, item);
@@ -1428,45 +1405,50 @@ void MainWindow::on_search_cost_product_clicked()
                         ui->search_table->setItem(i, 5, item);
                         item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
                         ui->search_table->setItem(i, 6, item);
+
                         i++;
                     }
                     current_search = current_search->next;
                 }
-            ui->number_res_search->setText(QString::number(count_results));
+            ui->number_res_search->setText(QString::number(count_results)); // отображение количества найденных результатов
             }
         }
+        // установка данных по умолчанию
         ui->min_cost->setText("0");
         ui->max_cost->setText("10000000");
     }
 }
-void MainWindow::on_cancel_search_2_clicked()
+void MainWindow::on_cancel_search_2_clicked() // отмена поиска
 {
     ui->menu->setCurrentIndex(0);
     ui->tables->setCurrentIndex(0);
 }
 
-void MainWindow::on_search_by_firm_clicked()
+void MainWindow::on_search_by_firm_clicked() // поиск по фирме - отображение формы
 {
     ui->menu->setCurrentIndex(13);
     ui->tables->setCurrentIndex(1);
 }
 
-void MainWindow::on_search_firm_product_clicked()
+void MainWindow::on_search_firm_product_clicked() // поиск по фирме - отправка данных из формы
 {
-   bool correct_data = true;
+   bool correct_data = true; // флаг корректности данных
+
+   // проверка корректности введенных данных
    if (ui->name_firm->text().isEmpty()) {
        correct_data = false;
-       ui->name_firm->setStyleSheet("background-color: red");
+       ui->name_firm->setStyleSheet("background-color: red;");
    }
-   else {
-       ui->name_firm->setStyleSheet("background-color: white");
-   }
-   if (correct_data == true) {
+   else { ui->name_firm->setStyleSheet("background-color: white;"); }
+
+   if (correct_data == true) { // если данные корректны
+       // считывание данных
        QString search_firm = ui->name_firm->text();
        bool all_shops_search = ui->where_search_2->isChecked();
        QString type = ui->type_product_2->currentText();
+
        int count_results = 0;
-       if (type == "Notebook" || type == "Smartphone" || type == "TV") {
+       if (type == "Notebook" || type == "Smartphone" || type == "TV") { // поиск по конкретному типу продукта
            QStringList Title_product;
            if (type == "Notebook") {
                Title_product << "ID"
@@ -1499,18 +1481,22 @@ void MainWindow::on_search_firm_product_clicked()
                         << "Number channels";
            }
            ui->search_table->setHorizontalHeaderLabels(Title_product);
-           if (all_shops_search == true) {
+
+           if (all_shops_search == true) { // поиск по всем магазинам сети
                shop* search_shop = shops->get_head();
                QTableWidgetItem *item;
                int i = 0;
                count_results = 0;
-               while (search_shop != nullptr) {
+
+               while (search_shop != nullptr) { // цикл по магазинам
                    list_product* search_products = search_shop->get_ware();
                    product* current_search = search_products->head;
-                   while (current_search != nullptr) {
+                   while (current_search != nullptr) { // цикл по продуктам магазина
                        if (current_search->get_firma() == search_firm && (current_search->get_category() == type)) {
                            count_results++;
                            ui->search_table->setRowCount(count_results);
+
+                           // заполнение таблицы
                            item = new QTableWidgetItem(QString::number(current_search->get_current()));
                            ui->search_table->setItem(i, 0, item);
                            item = new QTableWidgetItem(current_search->get_iid());
@@ -1527,24 +1513,28 @@ void MainWindow::on_search_firm_product_clicked()
                            ui->search_table->setItem(i, 6, item);
                            item = new QTableWidgetItem(current_search->get_third());
                            ui->search_table->setItem(i, 7, item);
+
                            i++;
                        }
                        current_search = current_search->next;
                    }
                    search_shop = search_shop->get_next();
                }
-               ui->number_res_search->setText(QString::number(count_results));
+               ui->number_res_search->setText(QString::number(count_results)); // отображение количества результатов поиска
            }
-           else {
-               list_product* search_products = current_shop->get_ware();
+           else { // поиск только в текущем магазине
+               list_product* search_products = current_shop->get_ware(); // список продуктов магазина
                product* current_search = search_products->head;
                QTableWidgetItem *item;
                int i = 0;
                count_results = 0;
-               while (current_search != nullptr) {
+
+               while (current_search != nullptr) { // цикл по продуктам
                    if (current_search->get_firma() == search_firm && (current_search->get_category() == type)) {
                        count_results++;
                        ui->search_table->setRowCount(count_results);
+
+                       // заполнение таблицы
                        item = new QTableWidgetItem(QString::number(current_search->get_current()));
                        ui->search_table->setItem(i, 0, item);
                        item = new QTableWidgetItem(current_search->get_iid());
@@ -1561,14 +1551,15 @@ void MainWindow::on_search_firm_product_clicked()
                        ui->search_table->setItem(i, 6, item);
                        item = new QTableWidgetItem(current_search->get_third());
                        ui->search_table->setItem(i, 7, item);
+
                        i++;
                    }
                    current_search = current_search->next;
                }
-           ui->number_res_search->setText(QString::number(count_results));
+           ui->number_res_search->setText(QString::number(count_results)); // отображение количества результатов
            }
        }
-       else {
+       else { // поиск среди продуктов всех типов
            QStringList Title;
            Title << "ID"
                  << "Type"
@@ -1579,18 +1570,21 @@ void MainWindow::on_search_firm_product_clicked()
                  << "Optional";
            ui->search_table->setColumnCount(7);
            ui->search_table->setHorizontalHeaderLabels(Title);
-           if (all_shops_search == true) {
+
+           if (all_shops_search == true) { // поиск во всех магазинах сети
                shop* search_shop = shops->get_head();
                QTableWidgetItem *item;
                int i = 0;
                count_results = 0;
-               while (search_shop != nullptr) {
+               while (search_shop != nullptr) { // цикл по магазинам
                    list_product* search_products = search_shop->get_ware();
                    product* current_search = search_products->head;
-                   while (current_search != nullptr) {
+                   while (current_search != nullptr) { // цикл по продуктам
                        if (current_search->get_firma() == search_firm) {
                            count_results++;
                            ui->search_table->setRowCount(count_results);
+
+                           // заполнение таблицы
                            item = new QTableWidgetItem(QString::number(current_search->get_current()));
                            ui->search_table->setItem(i, 0, item);
                            item = new QTableWidgetItem(current_search->get_category());
@@ -1605,24 +1599,28 @@ void MainWindow::on_search_firm_product_clicked()
                            ui->search_table->setItem(i, 5, item);
                            item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
                            ui->search_table->setItem(i, 6, item);
+
                            i++;
                        }
                        current_search = current_search->next;
                    }
                    search_shop = search_shop->get_next();
                }
-               ui->number_res_search->setText(QString::number(count_results));
+               ui->number_res_search->setText(QString::number(count_results)); // отображение количества результатов
            }
-           else {
-               list_product* search_products = current_shop->get_ware();
+           else { // поиск только в текущем магазине
+               list_product* search_products = current_shop->get_ware(); // список продуктов текущего магазина
                product* current_search = search_products->head;
                QTableWidgetItem *item;
                int i = 0;
                count_results = 0;
-               while (current_search != nullptr) {
+
+               while (current_search != nullptr) { // цикл по продуктам магазина
                    if (current_search->get_firma() == search_firm) {
                        count_results++;
                        ui->search_table->setRowCount(count_results);
+
+                       // заполнение таблицы
                        item = new QTableWidgetItem(QString::number(current_search->get_current()));
                        ui->search_table->setItem(i, 0, item);
                        item = new QTableWidgetItem(current_search->get_category());
@@ -1637,11 +1635,12 @@ void MainWindow::on_search_firm_product_clicked()
                        ui->search_table->setItem(i, 5, item);
                        item = new QTableWidgetItem(current_search->get_first() + ", " + current_search->get_second() + ", " + current_search->get_third());
                        ui->search_table->setItem(i, 6, item);
+
                        i++;
                    }
                    current_search = current_search->next;
                }
-           ui->number_res_search->setText(QString::number(count_results));
+           ui->number_res_search->setText(QString::number(count_results)); // отображение количества результатов
            }
        }
    }
