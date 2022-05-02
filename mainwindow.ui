@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="main_menu">
      <widget class="QWidget" name="gridLayoutWidget">
@@ -93,6 +93,13 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="search_by_cost">
+         <property name="text">
+          <string>Search by cost</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="search_by_firm">
          <property name="text">
@@ -100,10 +107,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="search_by_cost">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="cancel_search_3">
          <property name="text">
-          <string>Search by cost</string>
+          <string>cancel</string>
          </property>
         </widget>
        </item>
@@ -1033,7 +1040,7 @@
         <x>9</x>
         <y>80</y>
         <width>781</width>
-        <height>31</height>
+        <height>32</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1396,6 +1403,90 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_edit">
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>761</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QPushButton" name="edit_notebook_2">
+         <property name="text">
+          <string>EDIT notebook</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="editsmartphone">
+         <property name="text">
+          <string>EDIT smartphone</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="edit_tv_2">
+         <property name="text">
+          <string>EDIT tv</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cancel_edit">
+         <property name="text">
+          <string>cancel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QWidget" name="horizontalLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>761</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QPushButton" name="delete_notebook">
+         <property name="text">
+          <string>DELETE notebook</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="delete_smartphone">
+         <property name="text">
+          <string>DELETE smartphone</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="delete_tv">
+         <property name="text">
+          <string>DELETE tv</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cancel_delete">
+         <property name="text">
+          <string>cancel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
@@ -1513,7 +1604,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="main_page">
      <widget class="QTabWidget" name="products">
@@ -1526,7 +1617,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="notebooks_3">
        <attribute name="title">
@@ -1634,6 +1725,7 @@
     </widget>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -1648,15 +1740,24 @@
      <string>File</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuHelp">
+   <widget class="QMenu" name="menuDescribe">
     <property name="title">
      <string>Help</string>
     </property>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuDescribe"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionabout">
+   <property name="text">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionAbout_author">
+   <property name="text">
+    <string>About author...</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

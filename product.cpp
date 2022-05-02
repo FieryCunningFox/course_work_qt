@@ -95,6 +95,14 @@ list_product::list_product(product* m_head, int m_count, int m_count_notebooks, 
 }
 
 void list_product::clear_list() {
+    product* current = head;
+    while (current != nullptr) {
+        product* current_tmp = current->next;
+        delete current;
+        current = current_tmp;
+        delete current_tmp;
+    }
+    delete current;
     head = nullptr;
     count_notebooks = 0;
     count_smartphones = 0;
@@ -150,11 +158,8 @@ void list_product::add_node(product* new_node) {
         head = new_node;
     }
     else {
-        product* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
-        }
-        current->next = new_node;
+        new_node->next = head;
+        head = new_node;
     }
     count++;
     if (new_node->get_category() == "Notebook") { count_notebooks++; }

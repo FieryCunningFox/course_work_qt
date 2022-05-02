@@ -35,6 +35,7 @@ public:
     void set_adress(QString m_adress);
     void set_phone(QString m_phone);
     void set_next(shop* m_next);
+    void set_artikul(int id);
 
     friend class shop_list;
     friend class MainWindow;

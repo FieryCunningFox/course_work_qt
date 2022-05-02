@@ -8,6 +8,9 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QDate>
+#include <QMenu>
+#include <QMenuBar>
+
 
 #include "product.h"
 #include "shop.h"
@@ -87,7 +90,6 @@ private slots:
     void help(); // справка
     void about_program(); // немного о программе
 
-
     void on_cancel_new_shop_2_clicked(); // отмена добавления нового магазина
 
     void on_edit_shop_done_clicked(); // завершение редактирования магазина - изменения данных
@@ -107,6 +109,24 @@ private slots:
     void on_search_firm_product_clicked(); // поиск по фирме
 
     void on_search_by_firm_clicked(); // завершение введения данных для поиска - старт поиска
+
+    void on_edit_notebook_2_clicked();
+
+    void on_editsmartphone_clicked();
+
+    void on_edit_tv_2_clicked();
+
+    void on_cancel_edit_clicked();
+
+    void on_delete_notebook_clicked();
+
+    void on_delete_smartphone_clicked();
+
+    void on_delete_tv_clicked();
+
+    void on_cancel_delete_clicked();
+
+    void on_cancel_search_3_clicked();
 
 private:
     Ui::MainWindow *ui;

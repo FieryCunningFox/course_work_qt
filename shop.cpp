@@ -21,6 +21,10 @@ void shop::set_data_shop(QString m_name_shop, QString m_adress, QString m_phone)
     phone = m_phone;
 }
 
+void shop::set_artikul(int id) {
+    artikul = id;
+}
+
 void shop::set_name(QString name) { name_shop = name; }
 void shop::set_adress(QString m_adress) { adress = m_adress; }
 void shop::set_phone(QString m_phone) { phone = m_phone; }
@@ -41,11 +45,8 @@ void shop_list::add_node(shop* new_shop) { // добавление нового 
         head = new_shop;
     }
     else {
-        shop* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
-        }
-        current->next = new_shop;
+        new_shop->next = head;
+        head = new_shop;
     }
     count_all_shops++;
 }
@@ -67,12 +68,16 @@ void shop_list::delete_node(int id_shop) {
             count_all_shops--;
             if (current_shop == head) {
                 head = current_shop->next;
+                current_shop->ware->clear_list();
+                delete current_shop->ware;
                 delete current_shop;
                 break;
             }
             else {
                 shop* prev = Prev(current_shop);
                 prev->next = (current_shop->next);
+                current_shop->ware->clear_list();
+                delete current_shop->ware;
                 delete current_shop;
                 break;
             }
